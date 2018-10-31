@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class ChatBot1
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-	//testing push
 	int emotion = 0;
 
 	/**
