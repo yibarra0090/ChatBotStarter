@@ -11,7 +11,12 @@ public class ChatBot4
 {
     //emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
     //check
-    int emotion = 0;
+    int correctNum = 0;
+
+    String[] words = new String[20];
+    String[] definitions = new String[20];
+    int[] index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
 
     /**
      * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -44,6 +49,33 @@ public class ChatBot4
         return "Hello, I am QuizBot. I'll help you study.";
     }
 
+    public void initializeVocab(String statement) {
+        Scanner input = new Scanner (System.in);
+        statement = input.nextLine();
+        int count = 0;
+
+        System.out.println("I can only test a maximum of 20 words at once.");
+        System.out.println("When you are finished inputting, please type 'I'm done'.");
+
+        while (count <= 50) {
+            System.out.println("Please input the word.");
+            words[count] = input.nextLine();
+
+            System.out.println("Please input the definition of that word. Be careful when typing!");
+            definitions[count] = input.nextLine();
+
+            count++;
+        }
+
+        if (count == 50) {
+            System.out.println("You've reached the maximum limit of words!");
+        }
+
+        if (statement.equalsIgnoreCase("I'm done") || statement.equalsIgnoreCase("Im done")) {
+            System.out.println("Okay, let's get to quizzing!");
+        }
+    }
+
     /**
      * Gives a response to a user statement
      *
@@ -63,23 +95,6 @@ public class ChatBot4
         else if (findKeyword(statement, "no") >= 0)
         {
             response = "Why so negative?";
-            emotion--;
-        }
-
-        else if (findKeyword(statement, "levin") >= 0)
-        {
-            response = "More like LevinTheDream, amiright?";
-            emotion++;
-        }
-        else if (findKeyword(statement, "folwell") >= 0)
-        {
-            response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
-            emotion++;
-        }
-        else if (findKeyword(statement, "goldman") >= 0)
-        {
-            response = "Go for the gold, man.";
-            emotion++;
         }
 
         // Response transforming I want to statement
@@ -259,11 +274,11 @@ public class ChatBot4
     private String getRandomResponse ()
     {
         Random r = new Random ();
-        if (emotion == 0)
+        if (correctNum == 0)
         {
             return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
         }
-        if (emotion < 0)
+        if (correctNum < 0)
         {
             return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
         }
