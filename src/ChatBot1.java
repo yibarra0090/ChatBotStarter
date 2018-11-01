@@ -11,6 +11,10 @@ public class ChatBot1
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
+	public String name1;
+	public String name2;
+	public String adj1;
+	public String bodypart;
 
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -28,11 +32,30 @@ public class ChatBot1
 
 			statement = in.nextLine();
 			//getResponse handles the user reply
-			System.out.println(getResponse(statement));
+			//System.out.println(getResponse(statement));
+			if (statement.equals("1"))
+			{
+				System.out.println("What is your name?");
+				name1 = in.nextLine();
+				System.out.println("Are you a girl, boy, or non-binary?");
+				if()
+				System.out.println("Okurrr! Can I have an adjective?");
+				adj1 = in.nextLine();
+				System.out.println("Okay, now I need a boy name.");
+				name2 = in.nextLine();
+				System.out.println("Give me a body part.");
+				bodypart= in.nextLine();
+				System.out.println("Okay "+name1+"! Here's the story!");
+				System.out.println(madLib1(name1, name2, adj1, bodypart));
+			}
 
 
 		}
 
+
+	}
+	public static String madLib1(String name1, String name2, String adj1, String bodypart) {
+		return "One Friday night, " + name1 + " was walking down a "+adj1+" road. They heard something suspicious, and stopped to turn around. When they turned around, they saw it was their friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and their "+bodypart+" fell off!";
 	}
 	/**
 	 * Get a default greeting 	
@@ -40,7 +63,7 @@ public class ChatBot1
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 10 types of stories. To get started, pick a number from 1-10.";
 	}
 	
 	/**
@@ -50,53 +73,52 @@ public class ChatBot1
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public String getResponse(String statement)
-	{
-		String response = "";
+	//public String getResponse(String statement)
+	//{
+		//String response = "";
 		
-		if (statement.length() == 0)
-		{
-			response = "Say something, please.";
-		}
+		//if (statement.length() == 0)
+		//{
+			//response = "Say something, please.";
+		//}
 
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-                	emotion--;
-		}
+		//else if (findKeyword(statement, "1") >= 0)
+		//{
+			//response = "Give me a name.";
+		//}
 		
-		else if (findKeyword(statement, "levin") >= 0)
-		{
-			response = "More like LevinTheDream, amiright?";
-			emotion++;
-		}
-		else if (findKeyword(statement, "folwell") >= 0)
-		{
-			response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
-			emotion++;
-		}
-		else if (findKeyword(statement, "goldman") >= 0)
-		{
-			response = "Go for the gold, man.";
-			emotion++;
-		}
+		//else if (findKeyword(statement, "levin") >= 0)
+		//{
+			//response = "More like LevinTheDream, amiright?";
+			//emotion++;
+		//}
+		//else if (findKeyword(statement, "folwell") >= 0)
+		// {
+			//response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
+			//emotion++;
+		///}
+		//else if (findKeyword(statement, "goldman") >= 0)
+		//{
+			//response = "Go for the gold, man.";
+			//emotion++;
+		//}
 
 		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
-		{
-			response = transformIWantToStatement(statement);
-		}
-		else if (findKeyword(statement, "I want",0) >= 0)
-		{
-			response = transformIWantStatement(statement);
-		}	
-		else
-		{
-			response = getRandomResponse();
-		}
+		//else if (findKeyword(statement, "I want to", 0) >= 0)
+		//{
+			//response = transformIWantToStatement(statement);
+		// }
+		//else if (findKeyword(statement, "I want",0) >= 0)
+		//{
+			//response = transformIWantStatement(statement);
+		//}
+		//else
+		//{
+			//response = getRandomResponse();
+		//}
 		
-		return response;
-	}
+		//return response;
+	//}
 	
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
