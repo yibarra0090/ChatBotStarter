@@ -41,7 +41,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hi, I'm the Hangman Bot today.";
 	}
 	
 	/**
@@ -270,5 +270,7 @@ public class ChatBot2
 	};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+
+	private String [] gameWordBank = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
 	
 }
