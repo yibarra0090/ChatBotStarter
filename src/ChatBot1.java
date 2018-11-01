@@ -15,6 +15,8 @@ public class ChatBot1
 	public String name2;
 	public String adj1;
 	public String bodypart;
+	public String pronoun1;
+	public String pronoun2;
 
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -37,8 +39,24 @@ public class ChatBot1
 			{
 				System.out.println("What is your name?");
 				name1 = in.nextLine();
-				System.out.println("Are you a girl, boy, or non-binary?");
-				if()
+				System.out.println("Are you a girl, boy, or neither?");
+				//if ((in.nextLine()).equals("girl"))
+				if((in.nextLine()).equals("girl") || (in.nextLine()).equals("Girl"))
+				{
+					pronoun1 = "her";
+					pronoun2 = "she";
+				}
+				if((in.nextLine()).equals("boy") || (in.nextLine()).equals("Boy"))
+				{
+					pronoun1 = "his";
+					pronoun2 = "he";
+				}
+				if((in.nextLine()).equals("neither") || (in.nextLine()).equals("Neither"))
+				{
+					pronoun1= "them";
+					pronoun2= "they";
+				}
+
 				System.out.println("Okurrr! Can I have an adjective?");
 				adj1 = in.nextLine();
 				System.out.println("Okay, now I need a boy name.");
