@@ -26,6 +26,7 @@ public class ChatBot4
     {
         Scanner in = new Scanner (System.in);
         System.out.println (getGreeting());
+        initializeVocab(statement);
 
 
         while (!statement.equals("Bye"))
@@ -57,23 +58,21 @@ public class ChatBot4
         System.out.println("I can only test a maximum of 20 words at once.");
         System.out.println("When you are finished inputting, please type 'I'm done'.");
 
-        while (count <= 50) {
-            System.out.println("Please input the word.");
-            words[count] = input.nextLine();
+            while (count <= 20 && !(statement.equalsIgnoreCase("I'm done"))) {
+                System.out.println("Please input the word.");
+                words[count] = input.nextLine();
 
-            System.out.println("Please input the definition of that word. Be careful when typing!");
-            definitions[count] = input.nextLine();
+                System.out.println("Please input the definition of that word. Be careful when typing!");
+                definitions[count] = input.nextLine();
 
-            count++;
-        }
+                count++;
+            }
 
-        if (count == 50) {
-            System.out.println("You've reached the maximum limit of words!");
-        }
+            if (count == 20) {
+                System.out.println("You've reached the maximum limit of words!");
+            }
 
-        if (statement.equalsIgnoreCase("I'm done") || statement.equalsIgnoreCase("Im done")) {
-            System.out.println("Okay, let's get to quizzing!");
-        }
+        System.out.println("Okay, let's get to quizzing!");
     }
 
     /**
