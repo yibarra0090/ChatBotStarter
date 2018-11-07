@@ -57,7 +57,7 @@ public class ChatBot3
 	{
 		String response = "";
 		
-		if (statement.length() == 0 || statement != "yes")
+		if (statement.length() == 0 || !statement.equals("yes"))
 		{
 			response = "Wow, am a joke to you?";
 			emotion--;
@@ -66,28 +66,22 @@ public class ChatBot3
 		else if (findKeyword(statement, "yes") >= 0)
 		{
 			response = "Let's go!";
-			int ran = (int)((Math.random()*4)+1);
+			int ran = (int)((Math.random()*4));
 			String randomRid = riddles[ran];
 			String randomAns = corrAnswers[ran];
-
+			response = "Okay here we go:"+""+" "+randomRid;
+			while (findKeyword(statement,randomAns) < 0){
+			    if (findKeyword(statement,randomAns) < 0){
+			        emotion --;
+			        response = randomWrongResponse[(int)((Math.random()*3))];
+                }
+                if (findKeyword(statement, randomAns) >= 0){
+                    emotion ++;
+                    System.out.println("Ha Ha Ha, you got it!");
+                }
+            }
 
 		}
-
-
-
-		else if (findKeyword(statement, "I want to", 0) >= 0)
-		{
-			response = transformIWantToStatement(statement);
-		}
-		else if (findKeyword(statement, "I want",0) >= 0)
-		{
-			response = transformIWantStatement(statement);
-		}	
-		else
-		{
-			response = getRandomResponse();
-		}
-		
 		return response;
 	}
 	
@@ -97,7 +91,7 @@ public class ChatBot3
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
-	private String transformIWantToStatement(String statement)
+	private String transformAnswerToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
 		statement = statement.trim();
@@ -108,9 +102,9 @@ public class ChatBot3
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
+		int psn = findKeyword (statement,"I want", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
+		return "Are you sure you want to" + restOfStatement + "?";
 	}
 
 	
@@ -261,7 +255,7 @@ public class ChatBot3
 		}	
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
-	
+	private String [] randomWrongResponse = {"Uhh, are you sure", "No, try again", "Not funny, try again", "Seriously?"};
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Hmmm.",
 			"Do you really think so?",
