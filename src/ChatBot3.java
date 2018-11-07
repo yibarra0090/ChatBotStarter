@@ -69,7 +69,7 @@ public class ChatBot3
 			int ran = (int)((Math.random()*4)+1);
 			String randomRid = riddles[ran];
 			String randomAns = corrAnswers[ran];
-			
+
 
 		}
 
