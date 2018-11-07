@@ -17,6 +17,13 @@ public class ChatBot1
 	public String bodypart;
 	public String pronoun1;
 	public String pronoun2;
+	public String gender;
+	public String food;
+	public String country;
+	public String number1;
+	public String number2;
+	public String verb;
+
 
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -40,24 +47,24 @@ public class ChatBot1
 				System.out.println("What is your name?");
 				name1 = in.nextLine();
 				System.out.println("Are you a girl, boy, or neither?");
-				//if ((in.nextLine()).equals("girl"))
-				if((in.nextLine()).equals("girl") || (in.nextLine()).equals("Girl"))
-				{
-					pronoun1 = "her";
-					pronoun2 = "she";
+				gender= in.nextLine();
+				if (gender.equals("girl") || gender.equals("Girl")) {
+					pronoun1 = "Her";
+					pronoun2 = "She";
+					System.out.println("Ok! Can I have an adjective?");
 				}
-				if((in.nextLine()).equals("boy") || (in.nextLine()).equals("Boy"))
-				{
-					pronoun1 = "his";
-					pronoun2 = "he";
+				if (gender.equals("boy") || gender.equals("Boy")) {
+					pronoun1 = "His";
+					pronoun2 = "He";
+					System.out.println("Ok! Can I have an adjective?");
 				}
-				if((in.nextLine()).equals("neither") || (in.nextLine()).equals("Neither"))
-				{
-					pronoun1= "them";
-					pronoun2= "they";
-				}
+				if (gender.equals("neither") || gender.equals("Neither")) {
+					pronoun1 = "Them";
+					pronoun2 = "They";
+					System.out.println("Ok! Can I have an adjective?");
 
-				System.out.println("Okurrr! Can I have an adjective?");
+				}
+				//System.out.println("Ok! Can I have an adjective?");
 				adj1 = in.nextLine();
 				System.out.println("Okay, now I need a boy name.");
 				name2 = in.nextLine();
@@ -66,14 +73,39 @@ public class ChatBot1
 				System.out.println("Okay "+name1+"! Here's the story!");
 				System.out.println(madLib1(name1, name2, adj1, bodypart));
 			}
+			if (statement.equals("2"))
+			{
+				System.out.println("Good choice! Give me a food.");
+				food= in.nextLine();
+				System.out.println("Now, give me the name of a country.");
+				country= in.nextLine();
+				System.out.println("Give me a number.");
+				number1= in.nextLine();
+				System.out.println("Enter in a boy name.");
+				name1= in.nextLine();
+				System.out.println("Give me an adjective.");
+				adj1= in.nextLine();
+				System.out.println("Now, I need a verb.");
+				verb= in.nextLine();
+				System.out.println("Okay, a girl name please.");
+				name2= in.nextLine();
+				System.out.println("Finally, give me another number.");
+				number2= in.nextLine();
+				System.out.println("Here's the story!" + madLib2(food, country, number1, name1, adj1, verb, name2, number2 ));
+
+			}
 
 
 		}
 
 
+
 	}
-	public static String madLib1(String name1, String name2, String adj1, String bodypart) {
-		return "One Friday night, " + name1 + " was walking down a "+adj1+" road. They heard something suspicious, and stopped to turn around. When they turned around, they saw it was their friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and their "+bodypart+" fell off!";
+	public String madLib1(String name1, String name2, String adj1, String bodypart) {
+		return "One Friday night, " + name1 + " was walking down a "+adj1+" road." + pronoun2 + " heard something suspicious, and stopped to turn around. When" + pronoun2.toLowerCase()+" turned around, " + pronoun2.toLowerCase()+" saw it was" +pronoun1.toLowerCase()+" friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and his "+bodypart+" fell off!";
+	}
+	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) {
+		return "Once upon a time, there was the Kingdom of " + food + " located in the country of " + country +". In that Kingdom lived "+ number1 +" people, and the most important of them all was Prince " +name1+ ". Prince " + name1 +" was " + adj1 +" and handsome, and he loved his kingdom. The future of the kingdom of " + food +" was in his hands, and all he needed was a princess to help him rule. One day, he was " + verb +" down the street, when he spotted the most beautiful girl he had ever seen. He asked her for her name, which was " + name2 +". Then, he asked for her hand in marriage, and she gladly accepted. They ended up having " + number2 +" kids and living happily ever after.";
 	}
 	/**
 	 * Get a default greeting 	
@@ -81,7 +113,7 @@ public class ChatBot1
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 10 types of stories. To get started, pick a number from 1-10.";
+		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 5 types of stories. To get started, pick a number from 1-5.";
 	}
 	
 	/**
