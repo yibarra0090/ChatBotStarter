@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class ChatBot2
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
+	private String [] gameWordBankCSA = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
 
 
 	/**
@@ -30,7 +32,7 @@ public class ChatBot2
 			statement = in.nextLine();
 			//getResponse handles the user reply
 			System.out.println(getResponse(statement));
-
+			hangmanGame(gameWordBankCSA);
 
 		}
 
@@ -41,7 +43,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, I'm the Hangman Bot today.";
+		return "You ready to play some Hangman?";
 	}
 	
 	/**
@@ -57,19 +59,17 @@ public class ChatBot2
 		
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Hello, anyone there?";
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
+			response = "Why not?";
 		}
-		
-		else if (findKeyword(statement, "levin") >= 0)
+
+		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
-			emotion++;
+			response = "Alright, great!";
 		}
 
 		// Response transforming I want to statement
@@ -271,6 +271,38 @@ public class ChatBot2
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
 
-	private String [] gameWordBank = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
-	
+	public void hangmanGame(String[] args)
+	{
+		String chosenWord = gameWordBankCSA[5];
+		String[] chosenWordArray;
+		chosenWordArray = new String[chosenWord.length()];
+		for(int i = 0; i < chosenWord.length(); i++)
+		{
+			chosenWordArray[i] = chosenWord.substring(i, i+1);
+		}
+		String[] hiddenWordArray;
+		hiddenWordArray = new String[chosenWord.length()];
+		for(int i = 0; i < chosenWord.length(); i++)
+		{
+			if(!chosenWordArray[i].contains(" "))
+			{
+				hiddenWordArray[i] = "_";
+			} else
+			{
+				hiddenWordArray[i] = " ";
+			}
+		}
+		for(int i = 0; i < hiddenWordArray.length; i++)
+		{
+			System.out.print(hiddenWordArray[i]);
+		}
+		Scanner input = new Scanner(System.in);
+		while(hiddenWordArray != chosenWordArray)
+		{
+			String guess = input.nextLine();
+			{
+				
+			}
+		}
+	}
 }
