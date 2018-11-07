@@ -11,7 +11,8 @@ public class ChatBot3
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-
+    String riddles [] = {"What is often returned but is never borrowed?", "I have cities but no houses, moutains but no trees, and water but no fish. What am I?", "What do you call a three humped camel?", "I’m often running yet I have no legs. You need me but I don’t need you. What am I?", "What ten letter word starts with gas?","What is 3/7 chicken, 2/3 cat and 2/4 goat?"};
+    String corrAnswers [] = {"Thanks","A map","Pregnant","Water","Chicago"};
 
 
 	/**
@@ -42,7 +43,7 @@ public class ChatBot3
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle?";
 	}
 	
 	/**
@@ -56,24 +57,24 @@ public class ChatBot3
 	{
 		String response = "";
 		
-		if (statement.length() == 0)
+		if (statement.length() == 0 || statement != "yes")
 		{
-			response = "Say something, please.";
+			response = "Wow, am a joke to you?";
+			emotion--;
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
-		}
-		
-		else if (findKeyword(statement, "levin") >= 0)
-		{
-			response = "More like LevinTheDream amiright?";
-			emotion++;
+			response = "Let's go!";
+			int ran = (int)((Math.random()*4)+1);
+			String randomRid = riddles[ran];
+			String randomAns = corrAnswers[ran];
+			
+
 		}
 
-		// Response transforming I want to statement
+
+
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
