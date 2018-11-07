@@ -17,6 +17,7 @@ public class ChatBot4
     String[] definitions = new String[20];
     int[] index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
+    boolean initialize = false;
 
     /**
      * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -29,15 +30,11 @@ public class ChatBot4
         initializeVocab(statement);
 
 
-        while (!statement.equals("Bye"))
+        while (!statement.equals("END"))
         {
-
-
             statement = in.nextLine();
             //getResponse handles the user reply
             System.out.println(getResponse(statement));
-
-
         }
 
     }
@@ -47,32 +44,7 @@ public class ChatBot4
      */
     public String getGreeting()
     {
-        return "Hello, I am QuizBot. I'll help you study.";
-    }
-
-    public void initializeVocab(String statement) {
-        Scanner input = new Scanner (System.in);
-        statement = input.nextLine();
-        int count = 0;
-
-        System.out.println("I can only test a maximum of 20 words at once.");
-        System.out.println("When you are finished inputting, please type 'I'm done'.");
-
-            while (count <= 20 && !(statement.equalsIgnoreCase("I'm done"))) {
-                System.out.println("Please input the word.");
-                words[count] = input.nextLine();
-
-                System.out.println("Please input the definition of that word. Be careful when typing!");
-                definitions[count] = input.nextLine();
-
-                count++;
-            }
-
-            if (count == 20) {
-                System.out.println("You've reached the maximum limit of words!");
-            }
-
-        System.out.println("Okay, let's get to quizzing!");
+        return "Hello, I am QuizBot. I'll help you study. Please type 'END' if you no longer want to speak to me.";
     }
 
     /**
@@ -85,33 +57,66 @@ public class ChatBot4
     public String getResponse(String statement)
     {
         String response = "";
+        initializeVocab(statement);
+        System.out.println("Okay, let's get to quizzng!");
 
-        if (statement.length() == 0)
-        {
-            response = "Say something, please.";
-        }
+        if (initialize = true) {
+            if (statement.length() == 0)
+            {
+                response = "You won't know if you're right unless you try.";
+            }
 
-        else if (findKeyword(statement, "no") >= 0)
-        {
-            response = "Why so negative?";
-        }
+            else if (findKeyword(statement, "What does") >= 0)
+            {
+                response = "The definition of";
+            }
 
-        // Response transforming I want to statement
-        else if (findKeyword(statement, "I want to", 0) >= 0)
-        {
-            response = transformIWantToStatement(statement);
-        }
-        else if (findKeyword(statement, "I want",0) >= 0)
-        {
-            response = transformIWantStatement(statement);
-        }
-        else
-        {
-            response = getRandomResponse();
+            // Response transforming I want to statement
+            else if (findKeyword(statement, "I want to", 0) >= 0)
+            {
+                response = transformIWantToStatement(statement);
+            }
+            else if (findKeyword(statement, "I want",0) >= 0)
+            {
+                response = transformIWantStatement(statement);
+            }
+            else
+            {
+                response = getRandomResponse();
+            }
         }
 
         return response;
     }
+
+    public void initializeVocab(String statement) {
+        Scanner input = new Scanner (System.in);
+        statement = input.nextLine();
+        int count = 1;
+
+        System.out.println("I can only test a maximum of 20 words at once.");
+        System.out.println("When you are finished inputting, please type 'I'm done'.");
+
+        if (!statement.equalsIgnoreCase("I'm done")) {
+            while (count <= 21) {
+                System.out.println("Please input word " + count + ".");
+                words[count] = input.nextLine();
+
+                System.out.println("Please input the definition of that word. Be careful when typing!");
+                definitions[count] = input.nextLine();
+
+                count++;
+            }
+
+            if (count == 21) {
+                System.out.println("You've reached the maximum limit of words!");
+                initialize = true;
+            }
+        } else {
+            initialize = true;
+        }
+    }
+
 
     /**
      * Take a statement with "I want to <something>." and transform it into
@@ -183,8 +188,6 @@ public class ChatBot4
         String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
         return "Why do you " + restOfStatement + " me?";
     }
-
-
 
 
     /**
