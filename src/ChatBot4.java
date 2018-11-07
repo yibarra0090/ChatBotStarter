@@ -17,6 +17,9 @@ public class ChatBot4
     String[] definitions = new String[20];
     int[] index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
+    String testWord;
+    String testDefintion;
+
     boolean initialize = false;
 
     /**
@@ -27,13 +30,12 @@ public class ChatBot4
     {
         Scanner in = new Scanner (System.in);
         System.out.println (getGreeting());
-        initializeVocab(statement);
-
 
         while (!statement.equals("END"))
         {
+            initializeVocab(statement);
+            System.out.println("Okay, let's get to quizzing!");
             statement = in.nextLine();
-            //getResponse handles the user reply
             System.out.println(getResponse(statement));
         }
 
@@ -57,32 +59,26 @@ public class ChatBot4
     public String getResponse(String statement)
     {
         String response = "";
-        initializeVocab(statement);
-        System.out.println("Okay, let's get to quizzng!");
 
-        if (initialize = true) {
+        while (initialize = true) {
             if (statement.length() == 0)
             {
                 response = "You won't know if you're right unless you try.";
             }
 
-            else if (findKeyword(statement, "What does") >= 0)
+            else if (findKeyword(statement, "What does", 0) >= 0)
             {
                 response = "The definition of";
             }
 
             // Response transforming I want to statement
-            else if (findKeyword(statement, "I want to", 0) >= 0)
+            else if (findKeyword(statement, "What does", 0) >= 0)
             {
-                response = transformIWantToStatement(statement);
+                response = transformMeaningStatement(statement);
             }
             else if (findKeyword(statement, "I want",0) >= 0)
             {
                 response = transformIWantStatement(statement);
-            }
-            else
-            {
-                response = getRandomResponse();
             }
         }
 
@@ -97,14 +93,14 @@ public class ChatBot4
         System.out.println("I can only test a maximum of 20 words at once.");
         System.out.println("When you are finished inputting, please type 'I'm done'.");
 
-        if (!statement.equalsIgnoreCase("I'm done")) {
-            while (count <= 21) {
+            while (count <= 21 && !statement.equalsIgnoreCase("I'm done")) {
                 System.out.println("Please input word " + count + ".");
-                words[count] = input.nextLine();
+                statement = input.nextLine();
+                words[count] = statement;
 
                 System.out.println("Please input the definition of that word. Be careful when typing!");
-                definitions[count] = input.nextLine();
-
+                statement = input.nextLine();
+                definitions[count] = statement;
                 count++;
             }
 
@@ -112,11 +108,28 @@ public class ChatBot4
                 System.out.println("You've reached the maximum limit of words!");
                 initialize = true;
             }
-        } else {
+
             initialize = true;
-        }
     }
 
+    public void randomizeWords(String[] words, String[] definitions) {
+        int random = (int)(Math.random()*20 + 1);
+
+    }
+
+
+    private String transformMeaningStatement(String statement) {
+        statement = statement.trim();
+        String lastChar = statement.substring(statement.length() - 1);
+
+        if (lastChar.equals("?")) {
+            statement = statement.substring(0, statement.length() - 1);
+        }
+
+        int psn = findKeyword(statement, "What does", 0);
+        String restOfStatement = statement.substring(psn + 9).trim();
+        return "The definition of the word is";
+    }
 
     /**
      * Take a statement with "I want to <something>." and transform it into
@@ -266,36 +279,5 @@ public class ChatBot4
     {
         return findKeyword (statement, goal, 0);
     }
-
-
-
-    /**
-     * Pick a default response to use if nothing else fits.
-     * @return a non-committal string
-     */
-    private String getRandomResponse ()
-    {
-        Random r = new Random ();
-        if (correctNum == 0)
-        {
-            return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
-        }
-        if (correctNum < 0)
-        {
-            return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-        }
-        return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
-    }
-
-    private String [] randomNeutralResponses = {"Interesting, tell me more",
-            "Hmmm.",
-            "Do you really think so?",
-            "You don't say.",
-            "It's all boolean to me.",
-            "So, would you like to go for a walk?",
-            "Could you say that again?"
-    };
-    private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-    private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
 
 }

@@ -57,7 +57,7 @@ public class ChatBot3
 	{
 		String response = "";
 		
-		if (statement.length() == 0 || !statement.equals("yes"))
+		if (statement.length() == 0)
 		{
 			response = "Wow, am a joke to you?";
 			emotion--;
