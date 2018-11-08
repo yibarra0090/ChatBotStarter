@@ -15,7 +15,6 @@ public class ChatBot4
 
     String[] words = new String[20];
     String[] definitions = new String[20];
-    int[] index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
     String testWord;
     String testDefintion;
@@ -61,6 +60,9 @@ public class ChatBot4
         String response = "";
 
         while (initialize = true) {
+
+            testWords(statement);
+
             if (statement.length() == 0)
             {
                 response = "You won't know if you're right unless you try.";
@@ -68,17 +70,7 @@ public class ChatBot4
 
             else if (findKeyword(statement, "What does", 0) >= 0)
             {
-                response = "The definition of";
-            }
-
-            // Response transforming I want to statement
-            else if (findKeyword(statement, "What does", 0) >= 0)
-            {
                 response = transformMeaningStatement(statement);
-            }
-            else if (findKeyword(statement, "I want",0) >= 0)
-            {
-                response = transformIWantStatement(statement);
             }
         }
 
@@ -92,16 +84,20 @@ public class ChatBot4
 
         System.out.println("I can only test a maximum of 20 words at once.");
         System.out.println("When you are finished inputting, please type 'I'm done'.");
+        System.out.println("Please input word " + count + ".");
+        statement = input.nextLine();
+        words[count] = statement;
 
             while (count <= 21 && !statement.equalsIgnoreCase("I'm done")) {
-                System.out.println("Please input word " + count + ".");
-                statement = input.nextLine();
-                words[count] = statement;
 
                 System.out.println("Please input the definition of that word. Be careful when typing!");
                 statement = input.nextLine();
                 definitions[count] = statement;
                 count++;
+
+                System.out.println("Please input word " + count + ".");
+                statement = input.nextLine();
+                words[count] = statement;
             }
 
             if (count == 21) {
@@ -112,9 +108,24 @@ public class ChatBot4
             initialize = true;
     }
 
-    public void randomizeWords(String[] words, String[] definitions) {
-        int random = (int)(Math.random()*20 + 1);
+    public void testWords(String statement) {
+        Scanner input = new Scanner (System.in);
+        for (int i = 0; i < 21; i++) {
+            if (words[i] != null) {
+                System.out.println("What is the meaning of " + words[i] + "?");
+                statement = input.nextLine();
 
+                if (statement.equalsIgnoreCase(definitions[i])) {
+                    System.out.println(randomCorrectResponse[(int) ((Math.random() * 4 + 1))]);
+                    correctNum++;
+                } else {
+                    System.out.println(randomWrongResponse[(int) ((Math.random() * 4 + 1))]);
+                    correctNum--;
+                }
+            } else {
+                System.out.println("You've completed the quiz!");
+            }
+        }
     }
 
 
@@ -280,4 +291,6 @@ public class ChatBot4
         return findKeyword (statement, goal, 0);
     }
 
+    private String [] randomCorrectResponse = {"That's correct!", "Nice one!", "You got it right!", "Great job!", "Superb!"};
+    private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "Did you make a typo?"};
 }
