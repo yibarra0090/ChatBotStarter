@@ -116,7 +116,7 @@ public class ChatBot1
 				item= in.nextLine();
 				System.out.println("Enter in a profession.");
 				profession= in.nextLine();
-				System.out.println("Okay, now give me a verb.");
+				System.out.println("Okay, now give me a veerb.");
 				verb= in.nextLine();
 				System.out.println("What's the name of your best friend?");
 				name1= in.nextLine();
