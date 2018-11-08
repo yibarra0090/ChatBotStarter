@@ -32,8 +32,6 @@ public class ChatBot2
 			statement = in.nextLine();
 			//getResponse handles the user reply
 			System.out.println(getResponse(statement));
-			hangmanGame(gameWordBankCSA);
-
 		}
 
 	}
@@ -69,7 +67,7 @@ public class ChatBot2
 
 		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "Alright, great!";
+			hangmanGame(gameWordBankCSA);
 		}
 
 		// Response transforming I want to statement
@@ -273,9 +271,11 @@ public class ChatBot2
 
 	public void hangmanGame(String[] args)
 	{
-		String chosenWord = gameWordBankCSA[5];
+		System.out.println("Alright, great! Take your first guess.");
+		String chosenWord = gameWordBankCSA[3];
 		String[] chosenWordArray;
 		chosenWordArray = new String[chosenWord.length()];
+
 		for(int i = 0; i < chosenWord.length(); i++)
 		{
 			chosenWordArray[i] = chosenWord.substring(i, i+1);
@@ -292,16 +292,22 @@ public class ChatBot2
 				hiddenWordArray[i] = " ";
 			}
 		}
+		String guess = "";
+		Scanner input = new Scanner(System.in);
 		for(int i = 0; i < hiddenWordArray.length; i++)
 		{
 			System.out.print(hiddenWordArray[i]);
 		}
-		Scanner input = new Scanner(System.in);
 		while(hiddenWordArray != chosenWordArray)
 		{
-			String guess = input.nextLine();
+			guess = input.nextLine();
+			for(int j = 0; j < hiddenWordArray.length; j++)
 			{
-				
+				if(chosenWordArray[j].equalsIgnoreCase(guess))
+				{
+					hiddenWordArray[j] = chosenWordArray[j];
+				}
+				System.out.print(hiddenWordArray[j]);
 			}
 		}
 	}
