@@ -23,6 +23,10 @@ public class ChatBot1
 	public String number1;
 	public String number2;
 	public String verb;
+	public String birthday;
+	public String item;
+	public String profession;
+
 
 
 	/**
@@ -51,17 +55,17 @@ public class ChatBot1
 				if (gender.equals("girl") || gender.equals("Girl")) {
 					pronoun1 = "Her";
 					pronoun2 = "She";
-					System.out.println("Ok! Can I have an adjective?");
+					System.out.println("Okurrr! Can I have an adjective?");
 				}
 				if (gender.equals("boy") || gender.equals("Boy")) {
 					pronoun1 = "His";
 					pronoun2 = "He";
-					System.out.println("Ok! Can I have an adjective?");
+					System.out.println("Okurrr! Can I have an adjective?");
 				}
 				if (gender.equals("neither") || gender.equals("Neither")) {
 					pronoun1 = "Them";
 					pronoun2 = "They";
-					System.out.println("Ok! Can I have an adjective?");
+					System.out.println("Okurrr! Can I have an adjective?");
 
 				}
 				//System.out.println("Ok! Can I have an adjective?");
@@ -94,6 +98,31 @@ public class ChatBot1
 				System.out.println("Here's the story!" + madLib2(food, country, number1, name1, adj1, verb, name2, number2 ));
 
 			}
+			if (statement.equals("5"))
+			{
+				System.out.println("This one's a little weird. When is your birthday (in terms on month and day)?");
+				birthday = in.nextLine();
+				System.out.println("Give me an adjective.");
+				adj1 = in.nextLine();
+				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
+				{
+					adj1= "an" + adj1 + " ";
+				}
+				else
+				{
+					adj1= "a" + adj1 + " ";
+				}
+				System.out.println("Give me an item.");
+				item= in.nextLine();
+				System.out.println("Enter in a profession.");
+				profession= in.nextLine();
+				System.out.println("Okay, now give me a verb.");
+				verb= in.nextLine();
+				System.out.println("What's the name of your best friend?");
+				name1= in.nextLine();
+				//consider adding specific pronouns for the best friend
+				System.out.println("Here ya go!" + madLib5(birthday, adj1, item, profession, verb, name1);
+			}
 
 
 		}
@@ -106,6 +135,18 @@ public class ChatBot1
 	}
 	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) {
 		return "Once upon a time, there was the Kingdom of " + food + " located in the country of " + country +". In that Kingdom lived "+ number1 +" people, and the most important of them all was Prince " +name1+ ". Prince " + name1 +" was " + adj1 +" and handsome, and he loved his kingdom. The future of the kingdom of " + food +" was in his hands, and all he needed was a princess to help him rule. One day, he was " + verb +" down the street, when he spotted the most beautiful girl he had ever seen. He asked her for her name, which was " + name2 +". Then, he asked for her hand in marriage, and she gladly accepted. They ended up having " + number2 +" kids and living happily ever after.";
+	}
+	public String madLib3()
+	{
+		return
+	}
+	public String madLib4()
+	{
+		return
+	}
+	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
+	{
+		return "It is your birthday, " + birthday + " .You decide to treat yourself, and you buy" +adj1 + item + ". You are very happy with your purchase, and you take it home. You start to fall in love with your " + item + ", so much that your friends and family start to become worried about you. You even quit your job as a " + profession + " so that you can stay home and " + verb + " with the " + item + " all day. You have become madly obsessed with it. One day, your best friend " + name1 + " comes over. You show them your new " + item + " and they compliment it. You say thanks, and you go to the bathroom and tell them not to touch it. However, when you return from the bathroom, your eyes lay upon an enraging sight- " + name1 + " has their hands all over it! You flip out, and kill your best friend.";
 	}
 	/**
 	 * Get a default greeting 	
