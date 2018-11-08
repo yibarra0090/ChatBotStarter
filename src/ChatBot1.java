@@ -121,7 +121,7 @@ public class ChatBot1
 				System.out.println("What's the name of your best friend?");
 				name1= in.nextLine();
 				//consider adding specific pronouns for the best friend
-				System.out.println("Here ya go!" + madLib5(birthday, adj1, item, profession, verb, name1);
+				System.out.println("Here ya go!" + madLib5(birthday, adj1, item, profession, verb, name1));
 			}
 
 
@@ -138,11 +138,11 @@ public class ChatBot1
 	}
 	public String madLib3()
 	{
-		return
+		return "gmuyhg";
 	}
 	public String madLib4()
 	{
-		return
+		return "tfdrjdy";
 	}
 	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
 	{
