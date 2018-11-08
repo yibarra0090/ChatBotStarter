@@ -12,6 +12,7 @@ public class ChatBot4
     //emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
     //check
     int correctNum = 0;
+    int wrongNum = 0;
 
     String[] words = new String[20];
     String[] definitions = new String[20];
@@ -72,6 +73,7 @@ public class ChatBot4
             {
                 response = transformMeaningStatement(statement);
             }
+
         }
 
         return response;
@@ -120,7 +122,7 @@ public class ChatBot4
                     correctNum++;
                 } else {
                     System.out.println(randomWrongResponse[(int) ((Math.random() * 4 + 1))]);
-                    correctNum--;
+                    wrongNum++;
                 }
             } else {
                 System.out.println("You've completed the quiz!");
