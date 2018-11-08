@@ -7,84 +7,69 @@ import java.util.Scanner;
  * @author Brooklyn Tech CS Department
  * @version September 2018
  */
-public class ChatBot3
-{
-	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-	int emotion = 0;
-    String riddles [] = {"What is often returned but is never borrowed?", "I have cities but no houses, moutains but no trees, and water but no fish. What am I?", "What do you call a three humped camel?", "I’m often running yet I have no legs. You need me but I don’t need you. What am I?", "What ten letter word starts with gas?","What is 3/7 chicken, 2/3 cat and 2/4 goat?"};
-    String corrAnswers [] = {"Thanks","A map","Pregnant","Water","Chicago"};
+public class ChatBot3 {
+    //emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
+    int emotion = 0;
+    String riddles[] = {"What is often returned but is never borrowed?", "I have cities but no houses, moutains but no trees, and water but no fish. What am I?", "What do you call a three humped camel?", "I’m often running yet I have no legs. You need me but I don’t need you. What am I?", "What ten letter word starts with gas?", "What is 3/7 chicken, 2/3 cat and 2/4 goat?"};
+    String corrAnswers[] = {"Thanks", "A map", "Pregnant", "Water", "Chicago"};
 
 
-	/**
-	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
-	 * @param statement the statement typed by the user
-	 */
-	public void chatLoop(String statement)
-	{
-		Scanner in = new Scanner (System.in);
-		System.out.println (getGreeting());
+    /**
+     * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
+     *
+     * @param statement the statement typed by the user
+     */
+    public void chatLoop(String statement) {
+        Scanner in = new Scanner(System.in);
+        System.out.println(getGreeting());
+        while (!statement.equals("Bye")) {
+            statement = in.nextLine();
+            //getResponse handles the user reply
+            System.out.println(getResponse(statement));
+        }
 
+    }
 
-		while (!statement.equals("Bye"))
-		{
-
-
-			statement = in.nextLine();
-			//getResponse handles the user reply
-			System.out.println(getResponse(statement));
-
-
-		}
-
-	}
-	/**
-	 * Get a default greeting 	
-	 * @return a greeting
-	 */	
-	public String getGreeting()
-	{
-		return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle?";
-	}
-	
-	/**
-	 * Gives a response to a user statement
-	 * 
-	 * @param statement
-	 *            the user statement
-	 * @return a response based on the rules given
-	 */
-	public String getResponse(String statement)
-	{
-		String response = "";
-		
-		if (statement.length() == 0)
-		{
-			response = "Wow, am a joke to you?";
-			emotion--;
-		}
-
-		else if (findKeyword(statement, "yes") >= 0)
-		{
-			response = "Let's go!";
-			int ran = (int)((Math.random()*4));
-			String randomRid = riddles[ran];
-			String randomAns = corrAnswers[ran];
-			response = "Okay here we go:"+""+" "+randomRid;
-			while (findKeyword(statement,randomAns) < 0){
-			    if (findKeyword(statement,randomAns) < 0){
-			        emotion --;
-			        response = randomWrongResponse[(int)((Math.random()*3))];
-                }
-                if (findKeyword(statement, randomAns) >= 0){
-                    emotion ++;
-                    System.out.println("Ha Ha Ha, you got it!");
+    /**
+     * Get a default greeting
+     *
+     * @return a greeting
+     */
+    public String getGreeting() {
+        return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle?";
+    }
+    /**
+     * Gives a response to a user statement
+     *
+     * @param statement the user statement
+     * @return a response based on the rules given
+     */
+    public String getResponse(String statement) {
+        Scanner in = new Scanner(System.in);
+        String response = "";
+        System.out.println(getGreeting());
+        if (statement.length() == 0) {
+            response = randomAngryResponses[(int)(Math.random() * 3)];
+        } else if (findKeyword(statement, "yes") >= 0) {
+            System.out.println("Let's go!");
+            int ran = (int) ((Math.random() * 4));
+            String randomRid = riddles[ran];
+            String randomAns = corrAnswers[ran];
+            System.out.println("Okay here we go:" + "" + " " + randomRid);
+            statement = in.nextLine();
+            while((findKeyword(statement, randomAns) < 0)) {
+                if (findKeyword(statement, randomAns) < 0) {
+                    System.out.println(randomWrongResponse[(int) ((Math.random() * 3))]);
+                    statement = in.nextLine();
                 }
             }
 
-		}
-		return response;
-	}
-	
+            response = randomHappyResponses[(int)(Math.random() * 3)];
+        } else{
+            response = "I only have one job, goodbye!";
+        }
+        return response;
+    }
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
@@ -102,39 +87,14 @@ public class ChatBot3
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement,"I want", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Are you sure you want to" + restOfStatement + "?";
+		int psn = findKeyword (statement,"The answer is", 0);
+		String restOfStatement = statement.substring(psn + 13).trim();
+		return "Are you sure" + restOfStatement + "is the answer?";
 	}
-
-	
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
 	 * "Would you really be happy if you had <something>?"
 	 * @param statement the user statement, assumed to contain "I want"
-	 * @return the transformed statement
-	 */
-	private String transformIWantStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
-	}
-	
-	
-	/**
-	 * Take a statement with "I <something> you" and transform it into 
-	 * "Why do you <something> me?"
-	 * @param statement the user statement, assumed to contain "I" followed by "you"
 	 * @return the transformed statement
 	 */
 	private String transformIYouStatement(String statement)
@@ -155,10 +115,6 @@ public class ChatBot3
 		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
-	
-
-	
-	
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
@@ -235,36 +191,8 @@ public class ChatBot3
 	{
 		return findKeyword (statement, goal, 0);
 	}
-	
-
-
-	/**
-	 * Pick a default response to use if nothing else fits.
-	 * @return a non-committal string
-	 */
-	private String getRandomResponse ()
-	{
-		Random r = new Random ();
-		if (emotion == 0)
-		{	
-			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
-		}
-		if (emotion < 0)
-		{	
-			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-		}	
-		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
-	}
 	private String [] randomWrongResponse = {"Uhh, are you sure", "No, try again", "Not funny, try again", "Seriously?"};
-	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
-			"Do you really think so?",
-			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
-			"Could you say that again?"
-	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"Bahumbug.", "Okay, bye then!", "The rage consumes me!"};
+	private String [] randomHappyResponses = {"You got it!", "Yay!", "That's it!"};
 	
 }
