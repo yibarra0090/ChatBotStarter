@@ -295,4 +295,63 @@ public class ChatBot4
 
     private String [] randomCorrectResponse = {"That's correct!", "Nice one!", "You got it right!", "Great job!", "Superb!"};
     private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "Did you make a typo?"};
+
+    /** ERROR CODE
+     * "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.2.3\lib\idea_rt.jar=54192:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.2.3\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Users\BT_1N3_19\IdeaProjects\ChatBotStarter\out\production\ChatBotStarter" ChatBotRunner
+     * Welcome to the chatbot, nice to meet you.
+     * Please type 1 to play WordLibs
+     * Please type 2 to play Hangman
+     * Please type 3 to speak to our Joke/RiddleBot.
+     * Please type 4 to speak to our QuizBot.
+     * 4
+     * Hello, I am QuizBot. I'll help you study. Please type 'END' if you no longer want to speak to me.
+     * END
+     * I can only test a maximum of 20 words at once.
+     * When you are finished inputting, please type 'I'm done'.
+     * Please input word 1.
+     * END
+     * Please input the definition of that word. Be careful when typing!
+     * END
+     * Please input word 2.
+     * END
+     * Please input the definition of that word. Be careful when typing!
+     * END
+     * Please input word 3.
+     * I'm done
+     * Okay, let's get to quizzing!
+     * okay
+     * You've completed the quiz!
+     * What is the meaning of END?
+     * END
+     * Nice one!
+     * What is the meaning of END?
+     * END
+     * Superb!
+     * What is the meaning of I'm done?
+     * END
+     * Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 20
+     * 	at ChatBot4.testWords(ChatBot4.java:116)
+     * 	at ChatBot4.getResponse(ChatBot4.java:65)
+     * 	at ChatBot4.chatLoop(ChatBot4.java:39)
+     * 	at ChatBotRunner.main(ChatBotRunner.java:34)
+     * Maybe you mixed that up with another word?
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     * You've completed the quiz!
+     *
+     * Process finished with exit code 1
+     */
 }
