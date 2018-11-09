@@ -64,16 +64,15 @@ public class ChatBot4
 
             testWords(statement);
 
-            if (statement.length() == 0)
-            {
-                response = "You won't know if you're right unless you try.";
+            if (correctNum > wrongNum) {
+                System.out.println(randomHappyResponse[(int) ((Math.random() * 2 + 1))]);
+            } else if (correctNum == wrongNum) {
+                System.out.println(randomNeutralResponse[(int) ((Math.random() * 2 + 1))]);
+            } else if (correctNum < wrongNum) {
+                System.out.println(randomSadResponse[(int) ((Math.random() * 2 + 1))]);
             }
 
-            else if (findKeyword(statement, "What does", 0) >= 0)
-            {
-                response = transformMeaningStatement(statement);
-            }
-
+            System.out.println("You got " + correctNum + "/" + (correctNum + wrongNum) + " questions right.");
         }
 
         return response;
@@ -107,17 +106,27 @@ public class ChatBot4
                 initialize = true;
             }
 
+
             initialize = true;
     }
 
     public void testWords(String statement) {
         Scanner input = new Scanner (System.in);
         for (int i = 0; i < 21; i++) {
-            if (words[i] != null) {
+            if (words[i] != null && !words[i].equalsIgnoreCase("I'm done")) {
                 System.out.println("What is the meaning of " + words[i] + "?");
                 statement = input.nextLine();
 
-                if (statement.equalsIgnoreCase(definitions[i])) {
+                if (statement.length() == 0)
+                {
+                    System.out.println("You won't know if you're right unless you try.");
+                }
+
+                else if (findKeyword(statement, "What does", 0) >= 0)
+                {
+                    System.out.println(transformMeaningStatement(statement));
+                }
+                else if (statement.equalsIgnoreCase(definitions[i])) {
                     System.out.println(randomCorrectResponse[(int) ((Math.random() * 4 + 1))]);
                     correctNum++;
                 } else {
@@ -127,6 +136,7 @@ public class ChatBot4
             } else {
                 i = 20;
                 initialize = false;
+                System.out.println("**************");
                 System.out.println("You've completed the quiz!");
             }
         }
@@ -297,63 +307,8 @@ public class ChatBot4
 
     private String [] randomCorrectResponse = {"That's correct!", "Nice one!", "You got it right!", "Great job!", "Superb!"};
     private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "Did you make a typo?"};
+    private String [] randomHappyResponse = {"Awesome!", "Congratulations!", "You're a genius!"};
+    private String [] randomNeutralResponse = {"That was okay.", "Keep studying harder!", "Make sure to review your material."};
+    private String [] randomSadResponse = {"You can do better than that.", "You'll do better next time.", "Maybe you should reference your notes again."};
 
-    /** ERROR CODE
-     * "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.2.3\lib\idea_rt.jar=54192:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.2.3\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Users\BT_1N3_19\IdeaProjects\ChatBotStarter\out\production\ChatBotStarter" ChatBotRunner
-     * Welcome to the chatbot, nice to meet you.
-     * Please type 1 to play WordLibs
-     * Please type 2 to play Hangman
-     * Please type 3 to speak to our Joke/RiddleBot.
-     * Please type 4 to speak to our QuizBot.
-     * 4
-     * Hello, I am QuizBot. I'll help you study. Please type 'END' if you no longer want to speak to me.
-     * END
-     * I can only test a maximum of 20 words at once.
-     * When you are finished inputting, please type 'I'm done'.
-     * Please input word 1.
-     * END
-     * Please input the definition of that word. Be careful when typing!
-     * END
-     * Please input word 2.
-     * END
-     * Please input the definition of that word. Be careful when typing!
-     * END
-     * Please input word 3.
-     * I'm done
-     * Okay, let's get to quizzing!
-     * okay
-     * You've completed the quiz!
-     * What is the meaning of END?
-     * END
-     * Nice one!
-     * What is the meaning of END?
-     * END
-     * Superb!
-     * What is the meaning of I'm done?
-     * END
-     * Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 20
-     * 	at ChatBot4.testWords(ChatBot4.java:116)
-     * 	at ChatBot4.getResponse(ChatBot4.java:65)
-     * 	at ChatBot4.chatLoop(ChatBot4.java:39)
-     * 	at ChatBotRunner.main(ChatBotRunner.java:34)
-     * Maybe you mixed that up with another word?
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     * You've completed the quiz!
-     *
-     * Process finished with exit code 1
-     */
 }
