@@ -8,6 +8,11 @@ import java.util.Scanner;
  * @version September 2018
  */
 public class ChatBot3 {
+    private String [] riddles = {"What is often returned but is never borrowed?", "I have cities but no houses, moutains but no trees, and water but no fish. What am I?", "What do you call a three humped camel?", "I’m often running yet I have no legs. You need me but I don’t need you. What am I?", "What ten letter word starts with gas?", "What is 3/7 chicken, 2/3 cat and 2/4 goat?"};
+    private String [] corrAnswers = {"Thanks", "A map", "Pregnant", "Water", "Chicago"};
+    int ran = (int) ((Math.random() * 4));
+    String randomRid = riddles[ran];
+    String randomAns = corrAnswers[ran];
     public void chatLoop(String statement) {
         Scanner in = new Scanner(System.in);
         System.out.println(getGreeting());
@@ -18,6 +23,7 @@ public class ChatBot3 {
         }
     }
     public String getGreeting() {
+        int ran = (int) ((Math.random() * 4));
         return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle?";
     }
 
@@ -28,9 +34,6 @@ public class ChatBot3 {
             response = randomAngryResponses[(int)(Math.random() * 3)];
         } else if (findKeyword(statement, "yes") >= 0) {
             System.out.println("Let's go!");
-            int ran = (int) ((Math.random() * 4));
-            String randomRid = riddles[ran];
-            String randomAns = corrAnswers[ran];
             System.out.println("Okay here we go:" + "" + " " + randomRid);
             statement = in.nextLine();
             while((findKeyword(statement, randomAns) < 0)) {
@@ -63,9 +66,9 @@ public class ChatBot3 {
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement,"The answer is", 0);
-		String restOfStatement = statement.substring(psn + 13).trim();
-		return "Are you sure" + restOfStatement + "is the answer?";
+		int psn = findKeyword (statement,randomAns, 0);
+		String restOfStatement = statement.substring(psn + randomAns.length()).trim();
+		return "Are you sure the answer is " + restOfStatement + "?";
 	}
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
@@ -137,7 +140,4 @@ public class ChatBot3 {
 	private String [] randomWrongResponse = {"Uhh, are you sure", "No, try again", "Not funny, try again", "Seriously?"};
 	private String [] randomAngryResponses = {"Bahumbug.", "Okay, bye then!", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"You got it!", "Yay!", "That's it!"};
-    private String riddles[] = {"What is often returned but is never borrowed?", "I have cities but no houses, moutains but no trees, and water but no fish. What am I?", "What do you call a three humped camel?", "I’m often running yet I have no legs. You need me but I don’t need you. What am I?", "What ten letter word starts with gas?", "What is 3/7 chicken, 2/3 cat and 2/4 goat?"};
-    private String corrAnswers[] = {"Thanks", "A map", "Pregnant", "Water", "Chicago"};
-
 }
