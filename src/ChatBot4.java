@@ -34,7 +34,7 @@ public class ChatBot4
         while (!statement.equals("END"))
         {
             initializeVocab(statement);
-            System.out.println("Okay, let's get to quizzing!");
+            System.out.println("Okay, let's get to quizzing! Are you ready?");
             statement = in.nextLine();
             System.out.println(getResponse(statement));
         }
@@ -60,7 +60,7 @@ public class ChatBot4
     {
         String response = "";
 
-        while (initialize = true) {
+        while (initialize == true) {
 
             testWords(statement);
 
@@ -125,6 +125,8 @@ public class ChatBot4
                     wrongNum++;
                 }
             } else {
+                i = 20;
+                initialize = false;
                 System.out.println("You've completed the quiz!");
             }
         }
