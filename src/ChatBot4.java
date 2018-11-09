@@ -88,18 +88,18 @@ public class ChatBot4
         System.out.println("When you are finished inputting, please type 'I'm done'.");
         System.out.println("Please input word " + count + ".");
         statement = input.nextLine();
-        words[count] = statement;
+        words[count-1] = statement;
 
             while (count <= 21 && !statement.equalsIgnoreCase("I'm done")) {
 
                 System.out.println("Please input the definition of that word. Be careful when typing!");
                 statement = input.nextLine();
-                definitions[count] = statement;
+                definitions[count-1] = statement;
                 count++;
 
                 System.out.println("Please input word " + count + ".");
                 statement = input.nextLine();
-                words[count] = statement;
+                words[count-1] = statement;
             }
 
             if (count == 21) {
