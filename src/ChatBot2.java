@@ -79,6 +79,10 @@ public class ChatBot2
 		{
 			response = transformIWantStatement(statement);
 		}
+		else
+		{
+			response = "Ok...";
+		}
 		
 		return response;
 	}
@@ -273,7 +277,7 @@ public class ChatBot2
 		System.out.println("Alright, great! Take your first guess.");
 		String[] hangmanWrongArray = {"H", "A", "N", "G", "M", "A", "N x_x"};
 		String hangmanWrongStr = "";
-		String chosenWord = gameWordBankCSA[6];
+		String chosenWord = gameWordBankCSA[5];
 		String[] chosenWordArray;
 		chosenWordArray = new String[chosenWord.length()];
 		for(int i = 0; i < chosenWord.length(); i++)
@@ -304,7 +308,7 @@ public class ChatBot2
 		while(!Arrays.equals(hiddenWordArray, chosenWordArray ) && !hangmanWrongStr.equals("HANGMAN x_x"))
 		{
 			guess = input.nextLine();
-			if(guess.equalsIgnoreCase("i quit") || guess.equalsIgnoreCase("quit"))
+			if(guess.contains("quit"))
 			{
 				while(!guess.equalsIgnoreCase("yes") && !guess.equalsIgnoreCase("no"))
 				{
