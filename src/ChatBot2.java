@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class ChatBot2
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-	int emotion = 0;
+	int win = 0;
 	private String [] gameWordBankCSA = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
 
 
@@ -25,7 +25,7 @@ public class ChatBot2
 		System.out.println (getGreeting());
 
 
-		while (!statement.equals("Bye"))
+		while (!statement.equalsIgnoreCase("no"))
 		{
 
 
@@ -62,7 +62,7 @@ public class ChatBot2
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why not?";
+			response = "See you around!";
 		}
 
 		else if (findKeyword(statement, "yes") >= 0)
@@ -78,10 +78,6 @@ public class ChatBot2
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
-		else
-		{
-			response = getRandomResponse();
 		}
 		
 		return response;
@@ -244,21 +240,21 @@ public class ChatBot2
 	 * Pick a default response to use if nothing else fits.
 	 * @return a non-committal string
 	 */
-	private String getRandomResponse ()
+	public String getEndResponse ()
 	{
 		Random r = new Random ();
-		if (emotion == 0)
+		if (win == 0)
 		{	
 			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
 		}
-		if (emotion < 0)
+		if (win < 0)
 		{	
-			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
+			return lossResponses [r.nextInt(lossResponses.length)];
 		}	
-		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
+		return victoryResponses [r.nextInt(victoryResponses.length)];
 	}
 	
-	private String [] randomNeutralResponses = {"Interesting, tell me more",
+	public String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Hmmm.",
 			"Do you really think so?",
 			"You don't say.",
@@ -266,16 +262,20 @@ public class ChatBot2
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	public String [] lossResponses = {"Ouch. RIP that guy.", "Another one bites the dust.",
+			"Might want to dust off your noggin a bit next time.", "I outsmarted you this time! Hah!"};
+	public String [] victoryResponses = {"Oh, fiddlesticks! I lost!", "You technically saved a life today. Bless your soul.",
+			"Wow, look at your beaming IQ!", "If I could, I'd give you a cookie."};
 
 	public void hangmanGame(String[] args)
 	{
+		win = 0;
 		System.out.println("Alright, great! Take your first guess.");
-		String chosenWord = gameWordBankCSA[3];
+		String[] hangmanWrongArray = {"H", "A", "N", "G", "M", "A", "N x_x"};
+		String hangmanWrongStr = "";
+		String chosenWord = gameWordBankCSA[6];
 		String[] chosenWordArray;
 		chosenWordArray = new String[chosenWord.length()];
-
 		for(int i = 0; i < chosenWord.length(); i++)
 		{
 			chosenWordArray[i] = chosenWord.substring(i, i+1);
@@ -288,27 +288,83 @@ public class ChatBot2
 			{
 				hiddenWordArray[i] = "_";
 			} else
+
 			{
 				hiddenWordArray[i] = " ";
 			}
 		}
+		int wrongCount = -1;
+		int changedChars = 0;
 		String guess = "";
 		Scanner input = new Scanner(System.in);
 		for(int i = 0; i < hiddenWordArray.length; i++)
 		{
 			System.out.print(hiddenWordArray[i]);
 		}
-		while(hiddenWordArray != chosenWordArray)
+		while(!Arrays.equals(hiddenWordArray, chosenWordArray ) && !hangmanWrongStr.equals("HANGMAN x_x"))
 		{
 			guess = input.nextLine();
-			for(int j = 0; j < hiddenWordArray.length; j++)
+			if(guess.equalsIgnoreCase("i quit") || guess.equalsIgnoreCase("quit"))
 			{
-				if(chosenWordArray[j].equalsIgnoreCase(guess))
+				while(!guess.equalsIgnoreCase("yes") && !guess.equalsIgnoreCase("no"))
 				{
-					hiddenWordArray[j] = chosenWordArray[j];
+					System.out.println("Are you sure you want to quit? Yes or No");
+					guess = input.nextLine();
+					if(guess.equalsIgnoreCase("yes"))
+					{
+						System.out.println("Do you want to play again?");
+						return;
+					} else
+
+						if(guess.equalsIgnoreCase("no"))
+					{
+						System.out.println("Ok, moving on.");
+					} else
+
+						if(!guess.equalsIgnoreCase("yes") && !guess.equalsIgnoreCase("no"))
+					{
+						System.out.println("Yes or No only, please.");
+					}
 				}
-				System.out.print(hiddenWordArray[j]);
+			} else
+
+			if(guess.length() > 1)
+			{
+				System.out.println("Please guess with a single-character response.");
+			} else
+
+			{
+				for(int j = 0; j < hiddenWordArray.length; j++)
+				{
+					if(chosenWordArray[j].equalsIgnoreCase(guess))
+					{
+						hiddenWordArray[j] = chosenWordArray[j];
+						changedChars++;
+					}
+				}
+				if(changedChars == 0)
+				{
+					wrongCount++;
+					hangmanWrongStr += hangmanWrongArray[wrongCount];
+				}
 			}
+			for(int k = 0; k < hiddenWordArray.length; k++)
+			{
+				System.out.print(hiddenWordArray[k]);
+			}
+			System.out.println(" " + hangmanWrongStr);
+			changedChars = 0;
 		}
+		if(Arrays.equals(hiddenWordArray, chosenWordArray))
+		{
+			win++;
+			System.out.println(getEndResponse());
+		}
+		if(hangmanWrongStr.equals("HANGMAN x_x"))
+		{
+			win--;
+			System.out.println(getEndResponse());
+		}
+		System.out.println("Do you want to play again?");
 	}
 }
