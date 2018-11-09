@@ -26,6 +26,7 @@ public class ChatBot1
 	public String birthday;
 	public String item;
 	public String profession;
+	public String response;
 
 
 
@@ -110,7 +111,7 @@ public class ChatBot1
 				}
 				else
 				{
-					adj1= "a" + adj1 + " ";
+					adj1= "a " + adj1 + " ";
 				}
 				System.out.println("Give me an item.");
 				item= in.nextLine();
@@ -123,9 +124,14 @@ public class ChatBot1
 				//consider adding specific pronouns for the best friend
 				System.out.println("Here ya go!" + madLib5(birthday, adj1, item, profession, verb, name1));
 			}
+			System.out.println(" ");
+			System.out.println("What did you think of the story?");
+			response = in.nextLine();
+
 
 
 		}
+
 
 
 
@@ -146,7 +152,7 @@ public class ChatBot1
 	}
 	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
 	{
-		return "It is your birthday, " + birthday + " .You decide to treat yourself, and you buy" +adj1 + item + ". You are very happy with your purchase, and you take it home. You start to fall in love with your " + item + ", so much that your friends and family start to become worried about you. You even quit your job as a " + profession + " so that you can stay home and " + verb + " with the " + item + " all day. You have become madly obsessed with it. One day, your best friend " + name1 + " comes over. You show them your new " + item + " and they compliment it. You say thanks, and you go to the bathroom and tell them not to touch it. However, when you return from the bathroom, your eyes lay upon an enraging sight- " + name1 + " has their hands all over it! You flip out, and kill your best friend.";
+		return "It is your birthday, " + birthday + " . You decide to treat yourself, and you buy " +adj1 + item + ". You are very happy with your purchase, and you take it home. You start to fall in love with your " + item + ", so much that your friends and family start to become worried about you. You even quit your job as a " + profession + " so that you can stay home and " + verb + " with the " + item + " all day. You have become madly obsessed with it. One day, your best friend " + name1 + " comes over. You show them your new " + item + " and they compliment it. You say thanks, and you go to the bathroom and tell them not to touch it. However, when you return from the bathroom, your eyes lay upon an enraging sight- " + name1 + " has their hands all over it! You flip out, and kill your best friend.";
 	}
 	/**
 	 * Get a default greeting 	
@@ -156,6 +162,7 @@ public class ChatBot1
 	{
 		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 5 types of stories. To get started, pick a number from 1-5.";
 	}
+
 	
 	/**
 	 * Gives a response to a user statement
@@ -231,6 +238,11 @@ public class ChatBot1
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
 		return "Why do you want to " + restOfStatement + "?";
+	}
+	private String storyFeedback(String response)
+	{
+		response= response.trim();
+
 	}
 
 	
