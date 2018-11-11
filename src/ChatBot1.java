@@ -28,9 +28,8 @@ public class ChatBot1
 	public String profession;
 	public String response;
 	public String city;
-	public String hobby;
 	public String day;
-	public String direcrtion;
+	public String direction;
 	//make the players name universal
 
 
@@ -76,6 +75,14 @@ public class ChatBot1
 				}
 				//System.out.println("Ok! Can I have an adjective?");
 				adj1 = in.nextLine();
+				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
+				{
+					adj1= "an " + adj1 + " ";
+				}
+				else
+				{
+					adj1= "a " + adj1 + " ";
+				}
 				System.out.println("Okay, now I need a boy name.");
 				name2 = in.nextLine();
 				System.out.println("Give me a body part.");
@@ -106,6 +113,31 @@ public class ChatBot1
 			}
 			if (statement.equals("3"))
 			{
+				System.out.println("Enter in a girl name.");
+				name1= in.nextLine();
+				System.out.println("Enter in a number 1-100");
+				number1= in.nextLine();
+				System.out.println("Give me the infinitive of a verb.");
+				verb= in.nextLine();
+				System.out.println("Give me a day of the week.");
+				day= in.nextLine();
+				System.out.println("Give me a direction, like left, right, etc.");
+				direction = in.nextLine();
+				System.out.println("Enter in an adjective.");
+				adj1= in.nextLine();
+				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
+				{
+					adj1= "an " + adj1 + " ";
+				}
+				else
+				{
+					adj1= "a " + adj1 + " ";
+				}
+				System.out.println("Lastly, give me the name of a music artist.");
+				name2= in.nextLine();
+				System.out.println("Here it is!" + madLib3(name1, number1, verb, day, direction, adj1, name2));
+
+
 
 			}
 			if (statement.equals("4"))
@@ -160,14 +192,14 @@ public class ChatBot1
 
 	}
 	public String madLib1(String name1, String name2, String adj1, String bodypart) {
-		return "One Friday night, " + name1 + " was walking down a "+adj1+" road." + pronoun2 + " heard something suspicious, and stopped to turn around. When" + pronoun2.toLowerCase()+" turned around, " + pronoun2.toLowerCase()+" saw it was" +pronoun1.toLowerCase()+" friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and his "+bodypart+" fell off!";
+		return "One Friday night, " + name1 + " was walking down "+adj1+" road." + pronoun2 + " heard something suspicious, and stopped to turn around. When" + pronoun2.toLowerCase()+" turned around, " + pronoun2.toLowerCase()+" saw it was" +pronoun1.toLowerCase()+" friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and his "+bodypart+" fell off!";
 	}
 	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) {
 		return "Once upon a time, there was the Kingdom of " + food + " located in the country of " + country +". In that Kingdom lived "+ number1 +" people, and the most important of them all was Prince " +name1+ ". Prince " + name1 +" was " + adj1 +" and handsome, and he loved his kingdom. The future of the kingdom of " + food +" was in his hands, and all he needed was a princess to help him rule. One day, he was " + verb +" down the street, when he spotted the most beautiful girl he had ever seen. He asked her for her name, which was " + name2 +". Then, he asked for her hand in marriage, and she gladly accepted. They ended up having " + number2 +" kids and living happily ever after.";
 	}
-	public String madLib3(String name1, String number1, String hobby, String day, String direction, String adj1, String name2)
+	public String madLib3(String name1, String number1, String verb, String day, String direction, String adj1, String name2)
 	{
-		return "There was once this girl, named "  + name1 + ". She was " +number1+ " years old, and loved to "+ hobby +". She hoped to become famous one day. However, before she could even have a shot at living her dream, a nightmare would happen instead. It was an early " +day+"morning, when she suddenly awoke. She found that she could not move, and fear started take over her body. She looked "+direction+" , and saw "+adj1+" sleep paralysis demon. "+name1+" tried to scream, but she couldn’t. All of a sudden, the sleep paralysis demon started speaking to her. It said ‘Yurrrr. I am here to terrorize you and to let you know that you will never wake up again.’ Then, it started singing a " +name2+" song. This scared " +name1+" so much that she passed out and fell back asleep." ;
+		return "There was once this girl, named "  + name1 + ". She was " +number1+ " years old, and loved to "+ verb +". She hoped to become famous one day. However, before she could even have a shot at living her dream, a nightmare would happen instead. It was an early " +day+"morning, when she suddenly awoke. She found that she could not move, and fear started take over her body. She looked "+direction+" , and saw "+adj1+" sleep paralysis demon. "+name1+" tried to scream, but she couldn’t. All of a sudden, the sleep paralysis demon started speaking to her. It said ‘Yurrrr. I am here to terrorize you and to let you know that you will never wake up again.’ Then, it started singing a " +name2+" song. This scared " +name1+" so much that she passed out and fell back asleep." ;
 	}
 	public String madLib4(String name1, String name2, String city, String country, String food)
 	{
