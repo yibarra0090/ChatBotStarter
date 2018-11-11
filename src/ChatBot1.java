@@ -182,6 +182,26 @@ public class ChatBot1
 			System.out.println(" ");
 			System.out.println("What did you think of the story?");
 			response = in.nextLine();
+			if (response.contains("was"))
+			{
+				System.out.println(storyFeedback(response));
+			}
+			if (response.contains("bad") || response.contains("terrible") || response.contains("boring") || response.contains("stupid"))
+			{
+				System.out.println("I'm sorry you didn't enjoy it. Maybe pick another story, or visit another bot.");
+			}
+			else{
+			if (response.contains("weird") || response.contains("crazy") || response.contains("wild") || response.contains("wtf"))
+			{
+				System.out.println("Yes, my stories can get a little crazy. HEE HEE. Check out another story or visit another bot.");
+			}
+			else{
+				if (response.contains("good") || response.contains("funny") || response.contains("nice") || response.contains("cute") || response.contains("interesting") || response.contains("great"));
+				{
+					System.out.println("I'm glad you enjoyed it! Don't forget to check out another story or another bot!");
+				}
+			}
+			}
 
 
 
@@ -296,8 +316,15 @@ public class ChatBot1
 	}
 	private String storyFeedback(String response)
 	{
-		response= response.trim();
-		return "rdjgfkfv";
+		//response= response.trim();
+		int a = findKeyword(response, "was",0);
+		String end= response.substring(a+3,response.length());
+		end= end.trim();
+		if((end.substring(end.length()-1,end.length()).equals(".") || (end.substring(end.length()-1,end.length()).equals("!"))))
+		{
+			end=end.substring(0,end.length()-1);
+		}
+		return "Why was it " + end + "?";
 
 	}
 
