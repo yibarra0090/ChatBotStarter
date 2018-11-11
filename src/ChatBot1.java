@@ -27,6 +27,8 @@ public class ChatBot1
 	public String item;
 	public String profession;
 	public String response;
+	public String city;
+	//make the players name universal
 
 
 
@@ -99,6 +101,18 @@ public class ChatBot1
 				System.out.println("Here's the story!" + madLib2(food, country, number1, name1, adj1, verb, name2, number2 ));
 
 			}
+			if (statement.equals("4"))
+			{
+				System.out.println("The story of mischief gone wrong. Enter in a boy name.");
+				name1= in.nextLine();
+				System.out.println("Enter in another boy name.");
+				name2= in.nextLine();
+				System.out.println("What is the name of your favorite city?");
+				city = in.nextLine();
+				System.out.println("In what country is that city located?");
+				country=in.nextLine();
+				System.out.println("Ok! Give me a food you hate");
+									}
 			if (statement.equals("5"))
 			{
 				System.out.println("This one's a little weird. When is your birthday (in terms on month and day)?");
@@ -107,7 +121,7 @@ public class ChatBot1
 				adj1 = in.nextLine();
 				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
 				{
-					adj1= "an" + adj1 + " ";
+					adj1= "an " + adj1 + " ";
 				}
 				else
 				{
@@ -148,7 +162,7 @@ public class ChatBot1
 	}
 	public String madLib4()
 	{
-		return "tfdrjdy";
+		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+", accidentally ate them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
 	}
 	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
 	{
