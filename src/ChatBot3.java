@@ -1,6 +1,6 @@
+//Yussef Ibarra
 import java.util.Random;
 import java.util.Scanner;
-
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -13,6 +13,11 @@ public class ChatBot3 {
     int ran = (int) ((Math.random() * 4));
     String randomRid = riddles[ran];
     String randomAns = corrAnswers[ran];
+
+    /**
+     * Sets the loop with the user,
+     * @param statement, user input
+     */
     public void chatLoop(String statement) {
         Scanner in = new Scanner(System.in);
         System.out.println(getGreeting());
@@ -22,11 +27,21 @@ public class ChatBot3 {
             System.out.println(getResponse(statement));
         }
     }
+
+    /**
+     * sets up a random joke + initiates communication with user
+     * @return
+     */
     public String getGreeting() {
         int ran = (int) ((Math.random() * 4));
         return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle? (yes or ..)";
     }
 
+    /**
+     * Asks the user a joke/riddle
+     * @param statement user input
+     * @return The punchline if the user is wrong, or states if user is correct
+     */
     public String getResponse(String statement) {
         Scanner in = new Scanner(System.in);
         String response = "";
