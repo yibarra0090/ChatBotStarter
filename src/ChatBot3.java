@@ -24,7 +24,7 @@ public class ChatBot3 {
     }
     public String getGreeting() {
         int ran = (int) ((Math.random() * 4));
-        return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle?";
+        return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle? (yes or ..)";
     }
 
     public String getResponse(String statement) {
@@ -34,15 +34,20 @@ public class ChatBot3 {
             response = randomAngryResponses[(int)(Math.random() * 3)];
         } else if (findKeyword(statement, "yes") >= 0) {
             System.out.println("Let's go!");
-            System.out.println("Okay here we go:" + "" + " " + randomRid);
+            System.out.println("Okay here we go:" + "" + " " + randomRid+" (Is the answer...)");
             statement = in.nextLine();
-            while((findKeyword(statement, randomAns) < 0)) {
-                if (findKeyword(statement, randomAns) < 0) {
-                    System.out.println(randomWrongResponse[(int) ((Math.random() * 3))]);
-                    statement = in.nextLine();
+            if (findKeyword(statement, randomAns) < 0) {
+                System.out.println("No, "+randomAns+" !");
+                return "Would you like another joke? (yes or ...)";
+            } else {
+                System.out.println(transformAnswerToStatement(statement));
+                statement = in.nextLine();
+                if (findKeyword(statement, "yes") >= 0){
+                    System.out.println("You're correct!");
+                } else {
+                    System.out.println("Where is your confidence, you're correct! ");
                 }
             }
-
             response = randomHappyResponses[(int)(Math.random() *3)];
         } else{
             response = randomAngryResponses[(int)(Math.random() * 3)];;
@@ -66,9 +71,9 @@ public class ChatBot3 {
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement,randomAns, 0);
-		String restOfStatement = statement.substring(psn + randomAns.length()).trim();
-		return "Are you sure the answer is " + restOfStatement + "?";
+		int psn = findKeyword (statement,"Is the answer", 0);
+		String restOfStatement = statement.substring(psn + 13).trim();
+		return "Are you sure the answer is " + restOfStatement + " ? (Yes or ...)";
 	}
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
@@ -137,7 +142,6 @@ public class ChatBot3 {
 	{
 		return findKeyword (statement, goal, 0);
 	}
-	private String [] randomWrongResponse = {"Uhh, are you sure", "No, try again", "Not funny, try again", "Seriously?"};
 	private String [] randomAngryResponses = {"Bahumbug.", "Okay, bye then!", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"You got it!", "Yay!", "That's it!"};
 }
