@@ -28,6 +28,9 @@ public class ChatBot1
 	public String profession;
 	public String response;
 	public String city;
+	public String hobby;
+	public String day;
+	public String direcrtion;
 	//make the players name universal
 
 
@@ -101,6 +104,10 @@ public class ChatBot1
 				System.out.println("Here's the story!" + madLib2(food, country, number1, name1, adj1, verb, name2, number2 ));
 
 			}
+			if (statement.equals("3"))
+			{
+
+			}
 			if (statement.equals("4"))
 			{
 				System.out.println("The story of mischief gone wrong. Enter in a boy name.");
@@ -111,7 +118,9 @@ public class ChatBot1
 				city = in.nextLine();
 				System.out.println("In what country is that city located?");
 				country=in.nextLine();
-				System.out.println("Ok! Give me a food you hate");
+				System.out.println("Ok! Give me a food you hate.");
+				food= in.nextLine();
+				System.out.println("Here it is! " + madLib4(name1, name2, city, country, food));
 									}
 			if (statement.equals("5"))
 			{
@@ -156,13 +165,13 @@ public class ChatBot1
 	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) {
 		return "Once upon a time, there was the Kingdom of " + food + " located in the country of " + country +". In that Kingdom lived "+ number1 +" people, and the most important of them all was Prince " +name1+ ". Prince " + name1 +" was " + adj1 +" and handsome, and he loved his kingdom. The future of the kingdom of " + food +" was in his hands, and all he needed was a princess to help him rule. One day, he was " + verb +" down the street, when he spotted the most beautiful girl he had ever seen. He asked her for her name, which was " + name2 +". Then, he asked for her hand in marriage, and she gladly accepted. They ended up having " + number2 +" kids and living happily ever after.";
 	}
-	public String madLib3()
+	public String madLib3(String name1, String number1, String hobby, String day, String direction, String adj1, String name2)
 	{
-		return "gmuyhg";
+		return "There was once this girl, named "  + name1 + ". She was " +number1+ " years old, and loved to "+ hobby +". She hoped to become famous one day. However, before she could even have a shot at living her dream, a nightmare would happen instead. It was an early " +day+"morning, when she suddenly awoke. She found that she could not move, and fear started take over her body. She looked "+direction+" , and saw "+adj1+" sleep paralysis demon. "+name1+" tried to scream, but she couldn’t. All of a sudden, the sleep paralysis demon started speaking to her. It said ‘Yurrrr. I am here to terrorize you and to let you know that you will never wake up again.’ Then, it started singing a " +name2+" song. This scared " +name1+" so much that she passed out and fell back asleep." ;
 	}
-	public String madLib4()
+	public String madLib4(String name1, String name2, String city, String country, String food)
 	{
-		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+", accidentally ate them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
+		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+", accidentally some them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
 	}
 	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
 	{
