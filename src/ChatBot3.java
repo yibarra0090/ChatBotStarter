@@ -34,7 +34,7 @@ public class ChatBot3 {
      */
     public String getGreeting() {
         int ran = (int) ((Math.random() * 4));
-        return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle? (yes or ..)";
+        return "Hi, this is Joke/Riddle Bot, want to hear a joke/riddle? (yes or ..) (Type 'Bye' to leave)";
     }
 
     /**
