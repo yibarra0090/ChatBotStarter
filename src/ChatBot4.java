@@ -17,10 +17,8 @@ public class ChatBot4
     String[] words = new String[20];
     String[] definitions = new String[20];
 
-    String testWord;
-    String testDefintion;
-
     boolean initialize = false;
+    boolean chatLoop = true;
 
     /**
      * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -31,14 +29,19 @@ public class ChatBot4
         Scanner in = new Scanner (System.in);
         System.out.println (getGreeting());
 
-        while (!statement.equals("END"))
+        while (!statement.equals("END") && chatLoop)
         {
             initializeVocab(statement);
-            System.out.println("Okay, let's get to quizzing! Are you ready?");
+            System.out.println("Okay, let's get to quizzing! If you want to stop at anytime, just type 'END'.");
+            System.out.println("Are you ready?");
             statement = in.nextLine();
             System.out.println(getResponse(statement));
         }
 
+        if (statement.equals("END") || !chatLoop) {
+            System.out.println("Now returning to menu...");
+            System.out.println("**************");
+        }
     }
     /**
      * Get a default greeting
@@ -46,7 +49,7 @@ public class ChatBot4
      */
     public String getGreeting()
     {
-        return "Hello, I am QuizBot. I'll help you study. Please type 'END' if you no longer want to speak to me.";
+        return "Hello, I am QuizBot. I'll help you study.";
     }
 
     /**
@@ -60,7 +63,7 @@ public class ChatBot4
     {
         String response = "";
 
-        while (initialize == true) {
+        while (initialize == true && !statement.equals("END")) {
 
             testWords(statement);
 
@@ -73,6 +76,12 @@ public class ChatBot4
             }
 
             System.out.println("You got " + correctNum + "/" + (correctNum + wrongNum) + " questions right.");
+        }
+
+        if (statement.equals("END")) {
+            initialize = false;
+            chatLoop = false;
+            response = "Sorry to see you go!";
         }
 
         return response;
@@ -136,6 +145,7 @@ public class ChatBot4
             } else {
                 i = 20;
                 initialize = false;
+                chatLoop = false;
                 System.out.println("**************");
                 System.out.println("You've completed the quiz!");
             }
@@ -155,78 +165,6 @@ public class ChatBot4
         String restOfStatement = statement.substring(psn + 9).trim();
         return "The definition of the word is";
     }
-
-    /**
-     * Take a statement with "I want to <something>." and transform it into
-     * "Why do you want to <something>?"
-     * @param statement the user statement, assumed to contain "I want to"
-     * @return the transformed statement
-     */
-    private String transformIWantToStatement(String statement)
-    {
-        //  Remove the final period, if there is one
-        statement = statement.trim();
-        String lastChar = statement.substring(statement
-                .length() - 1);
-        if (lastChar.equals("."))
-        {
-            statement = statement.substring(0, statement
-                    .length() - 1);
-        }
-        int psn = findKeyword (statement, "I want to", 0);
-        String restOfStatement = statement.substring(psn + 9).trim();
-        return "Why do you want to " + restOfStatement + "?";
-    }
-
-
-    /**
-     * Take a statement with "I want <something>." and transform it into
-     * "Would you really be happy if you had <something>?"
-     * @param statement the user statement, assumed to contain "I want"
-     * @return the transformed statement
-     */
-    private String transformIWantStatement(String statement)
-    {
-        //  Remove the final period, if there is one
-        statement = statement.trim();
-        String lastChar = statement.substring(statement
-                .length() - 1);
-        if (lastChar.equals("."))
-        {
-            statement = statement.substring(0, statement
-                    .length() - 1);
-        }
-        int psn = findKeyword (statement, "I want", 0);
-        String restOfStatement = statement.substring(psn + 6).trim();
-        return "Would you really be happy if you had " + restOfStatement + "?";
-    }
-
-
-    /**
-     * Take a statement with "I <something> you" and transform it into
-     * "Why do you <something> me?"
-     * @param statement the user statement, assumed to contain "I" followed by "you"
-     * @return the transformed statement
-     */
-    private String transformIYouStatement(String statement)
-    {
-        //  Remove the final period, if there is one
-        statement = statement.trim();
-        String lastChar = statement.substring(statement
-                .length() - 1);
-        if (lastChar.equals("."))
-        {
-            statement = statement.substring(0, statement
-                    .length() - 1);
-        }
-
-        int psnOfI = findKeyword (statement, "I", 0);
-        int psnOfYou = findKeyword (statement, "you", psnOfI);
-
-        String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
-        return "Why do you " + restOfStatement + " me?";
-    }
-
 
     /**
      * Search for one word in phrase. The search is not case
@@ -306,7 +244,7 @@ public class ChatBot4
     }
 
     private String [] randomCorrectResponse = {"That's correct!", "Nice one!", "You got it right!", "Great job!", "Superb!"};
-    private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "Did you make a typo?"};
+    private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "That's incorrect. Did you make a typo?"};
     private String [] randomHappyResponse = {"Awesome!", "Congratulations!", "You're a genius!"};
     private String [] randomNeutralResponse = {"That was okay.", "Keep studying harder!", "Make sure to review your material."};
     private String [] randomSadResponse = {"You can do better than that.", "You'll do better next time.", "Maybe you should reference your notes again."};
