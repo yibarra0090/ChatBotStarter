@@ -10,7 +10,6 @@ import java.util.Scanner;
  */
 public class ChatBot1
 {
-	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	public String name1; //Initializes variables that will be defined by the user and used in the stories
 	public String name2;
 	public String adj1;
@@ -50,46 +49,45 @@ public class ChatBot1
 			statement = in.nextLine();
 			//getResponse handles the user reply
 			//System.out.println(getResponse(statement));
-			if (statement.equals("1")) //
+			if (statement.equals("1")) //Information needed for Mad Lib 1
 			{
 				System.out.println("What is your name?");
-				name1 = in.nextLine();
+				name1 = in.nextLine(); //This defines the variable as whatever the user has typed in after the chatbot ask's for the user's name
 				System.out.println("Are you a girl, boy, or neither?");
 				gender= in.nextLine();
-				if (gender.equals("girl") || gender.equals("Girl")) {
+				if (gender.equals("girl") || gender.equals("Girl")) { //Sets pronouns to her and she if the user is a girl
 					pronoun1 = "Her";
 					pronoun2 = "She";
 					System.out.println("Okurrr! Can I have an adjective?");
 				}
-				if (gender.equals("boy") || gender.equals("Boy")) {
+				if (gender.equals("boy") || gender.equals("Boy")) { //Sets pronouns to his and he if the user is a boy
 					pronoun1 = "His";
 					pronoun2 = "He";
 					System.out.println("Okurrr! Can I have an adjective?");
 				}
-				if (gender.equals("neither") || gender.equals("Neither")) {
+				if (gender.equals("neither") || gender.equals("Neither")) { //Sets pronouns to them and they if the user is neither a boy or girl
 					pronoun1 = "Them";
 					pronoun2 = "They";
 					System.out.println("Okurrr! Can I have an adjective?");
 
 				}
-				//System.out.println("Ok! Can I have an adjective?");
 				adj1 = in.nextLine();
 				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
 				{
-					adj1= "an " + adj1 + " ";
+					adj1= "an " + adj1 + " "; //if the adjective starts with a vowel, "an' will come before it
 				}
 				else
 				{
-					adj1= "a " + adj1 + " ";
+					adj1= "a " + adj1 + " "; //if the adjective starts with a consonant, "a" will come before it
 				}
 				System.out.println("Okay, now I need a boy name.");
 				name2 = in.nextLine();
 				System.out.println("Give me a body part.");
 				bodypart= in.nextLine();
 				System.out.println("Okay "+name1+"! Here's the story! ");
-				System.out.println(madLib1(name1, name2, adj1, bodypart));
+				System.out.println(madLib1(name1, name2, adj1, bodypart)); //The chatbot delivers the story to the user
 			}
-			if (statement.equals("2"))
+			if (statement.equals("2")) //Information needed for Mad Lib 2
 			{
 				System.out.println("Good choice! Give me a food.");
 				food= in.nextLine();
@@ -101,22 +99,22 @@ public class ChatBot1
 				name1= in.nextLine();
 				System.out.println("Give me an adjective.");
 				adj1= in.nextLine();
-				System.out.println("Now, I need a verb.");
+				System.out.println("Now, I need a verb, in -ing form."); //ex.walking, talking
 				verb= in.nextLine();
 				System.out.println("Okay, a girl name please.");
 				name2= in.nextLine();
 				System.out.println("Finally, give me another number.");
 				number2= in.nextLine();
-				System.out.println("Here's the story! " + madLib2(food, country, number1, name1, adj1, verb, name2, number2 ));
+				System.out.println("Here's the story! " + madLib2(food, country, number1, name1, adj1, verb, name2, number2 )); //The chatbot delivers the story to the user
 
 			}
-			if (statement.equals("3"))
+			if (statement.equals("3")) //Information needed for Mad lib 3
 			{
 				System.out.println("Enter in a girl name.");
 				name1= in.nextLine();
 				System.out.println("Enter in a number 1-100");
 				number1= in.nextLine();
-				System.out.println("Give me the infinitive of a verb.");
+				System.out.println("Give me the infinitive of a verb."); //ex. dance, sleep
 				verb= in.nextLine();
 				System.out.println("Give me a day of the week.");
 				day= in.nextLine();
@@ -126,20 +124,20 @@ public class ChatBot1
 				adj1= in.nextLine();
 				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
 				{
-					adj1= "an " + adj1 + " ";
+					adj1= "an " + adj1 + " "; //If the adjective starts with a vowel, "an" will come before it
 				}
 				else
 				{
-					adj1= "a " + adj1 + " ";
+					adj1= "a " + adj1 + " "; //If the adjective starts with a consonant, "a" will ccome before it
 				}
 				System.out.println("Lastly, give me the name of a music artist.");
 				name2= in.nextLine();
-				System.out.println("Here it is! " + madLib3(name1, number1, verb, day, direction, adj1, name2));
+				System.out.println("Here it is! " + madLib3(name1, number1, verb, day, direction, adj1, name2)); //The chatbot delivers the story to the user
 
 
 
 			}
-			if (statement.equals("4"))
+			if (statement.equals("4")) //Information needed for Mad lib 4
 			{
 				System.out.println("The story of mischief gone wrong. Enter in a boy name.");
 				name1= in.nextLine();
@@ -151,9 +149,9 @@ public class ChatBot1
 				country=in.nextLine();
 				System.out.println("Ok! Give me a food you hate.");
 				food= in.nextLine();
-				System.out.println("Here it is! " + madLib4(name1, name2, city, country, food));
+				System.out.println("Here it is! " + madLib4(name1, name2, city, country, food)); //The chatbot delivers the story to the user
 									}
-			if (statement.equals("5"))
+			if (statement.equals("5")) //Information needed for Mad lib 5
 			{
 				System.out.println("This one's a little weird. When is your birthday (in terms on month and day)?");
 				birthday = in.nextLine();
@@ -161,11 +159,11 @@ public class ChatBot1
 				adj1 = in.nextLine();
 				if (adj1.substring(0,1).equals("a") || adj1.substring(0,1).equals("e") || adj1.substring(0,1).equals("i") || adj1.substring(0,1).equals("o"))
 				{
-					adj1= "an " + adj1 + " ";
+					adj1= "an " + adj1 + " "; //If the adjective starts with a vowel, "an" will come before it
 				}
 				else
 				{
-					adj1= "a " + adj1 + " ";
+					adj1= "a " + adj1 + " "; //If the adjective starts with a consonant, "a" will come before it
 				}
 				System.out.println("Give me an item.");
 				item= in.nextLine();
@@ -175,16 +173,15 @@ public class ChatBot1
 				verb= in.nextLine();
 				System.out.println("What's the name of your girl best friend?");
 				name1= in.nextLine();
-				//consider adding specific pronouns for the best friend
-				System.out.println("Here ya go! " + madLib5(birthday, adj1, item, profession, verb, name1));
+				System.out.println("Here ya go! " + madLib5(birthday, adj1, item, profession, verb, name1)); //The chatbot delivers the story to the user
 			}
-			System.out.println(" ");
+			System.out.println(" "); //Blank space because the subject changes from the mad lib to the getting the user's feedback. Also, it makes it easier to read.
 			System.out.println("What did you think of the story?");
 			response = in.nextLine();
 			if (response.contains("was"))
 			{
-				System.out.println(storyFeedback(response));
-				statement= in.nextLine();
+				System.out.println(storyFeedback(response)); //Asks the user why they thought the story was whatever they thought it was
+				statement= in.nextLine(); //Allows the user to respond
 			}
 
 			if (response.contains("bad") || response.contains("terrible") || response.contains("boring") || response.contains("stupid"))
@@ -212,21 +209,21 @@ public class ChatBot1
 
 
 	}
-	public String madLib1(String name1, String name2, String adj1, String bodypart) {
+	public String madLib1(String name1, String name2, String adj1, String bodypart) { //The base story of Mad Lib 1
 		return "One Friday night, " + name1 + " was walking down "+adj1+"road. " + pronoun2 + " heard something suspicious, and stopped to turn around. When " + pronoun2.toLowerCase()+" turned around, " + pronoun2.toLowerCase()+" saw it was" +pronoun1.toLowerCase()+" friend " + name2+ ". "+name2+" ran up to " +name1+ " and collapsed on the ground, and his "+bodypart+" fell off!";
 	}
-	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) {
+	public String madLib2 (String food, String country, String number1, String name1, String adj1, String verb, String name2, String number2) { //The base story of Mad Lib 2
 		return "Once upon a time, there was the Kingdom of " + food + " located in the country of " + country +". In that Kingdom lived "+ number1 +" people, and the most important of them all was Prince " +name1+ ". Prince " + name1 +" was " + adj1 +" and handsome, and he loved his kingdom. The future of the kingdom of " + food +" was in his hands, and all he needed was a princess to help him rule. One day, he was " + verb +" down the street, when he spotted the most beautiful girl he had ever seen. He asked her for her name, which was " + name2 +". Then, he asked for her hand in marriage, and she gladly accepted. They ended up having " + number2 +" kids and living happily ever after.";
 	}
-	public String madLib3(String name1, String number1, String verb, String day, String direction, String adj1, String name2)
+	public String madLib3(String name1, String number1, String verb, String day, String direction, String adj1, String name2) //The base story of Mad Lib 3
 	{
 		return "There was once this girl, named "  + name1 + ". She was " +number1+ " years old, and loved to "+ verb +". She hoped to become famous one day. However, before she could even have a shot at living her dream, a nightmare would happen instead. It was an early " +day+" morning, when she suddenly awoke. She found that she could not move, and fear started take over her body. She looked "+direction+" , and saw "+adj1+" sleep paralysis demon. "+name1+" tried to scream, but she couldn’t. All of a sudden, the sleep paralysis demon started speaking to her. It said ‘Yurrrr. I am here to terrorize you and to let you know that you will never wake up again.’ Then, it started singing a " +name2+" song. This scared " +name1+" so much that she passed out and fell back asleep." ;
 	}
-	public String madLib4(String name1, String name2, String city, String country, String food)
+	public String madLib4(String name1, String name2, String city, String country, String food) //The base story of Mad Lib 4
 	{
 		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+", accidentally some them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
 	}
-	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1)
+	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1) //The base story of Mad Lib 5
 	{
 		return "It is your birthday, " + birthday + " . You decide to treat yourself, and you buy " +adj1 + item + ". You are very happy with your purchase, and you take it home. You start to fall in love with your " + item + ", so much that your friends and family start to become worried about you. You even quit your job as a " + profession + " so that you can stay home and " + verb + " with the " + item + " all day. You have become madly obsessed with it. One day, your best friend " + name1 + " comes over. You show her your new " + item + " and she compliments it. You say thanks, and you go to the bathroom and tell her not to touch it. However, when you return from the bathroom, your eyes lay upon an enraging sight- " + name1 + " has her hands all over your " + item +"! You flip out, and kill your best friend.";
 	}
@@ -239,7 +236,7 @@ public class ChatBot1
 		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 5 types of stories. To get started, pick a number from 1-5.";
 	}
 
-	public String getFarewell()
+	public String getFarewell() //The chatbot's last statement to the user until the user decides what they want to do next.
 	{
 		return "In order to play another story, press a number from 1-5. In order to switch to another bot, run the runner again.";
 	}
@@ -269,17 +266,17 @@ public class ChatBot1
 		String restOfStatement = statement.substring(psn + 9).trim();
 		return "Why do you want to " + restOfStatement + "?";
 	}
-	private String storyFeedback(String response)
+	private String storyFeedback(String response) //Transforms the part of the statement that comes after "was" into a question
 	{
 		//response= response.trim();
-		int a = findKeyword(response, "was",0);
-		String end= response.substring(a+3,response.length());
-		end= end.trim();
-		if((end.substring(end.length()-1,end.length()).equals(".") || (end.substring(end.length()-1,end.length()).equals("!"))))
+		int a = findKeyword(response, "was",0); //Looks for the start position of keyword "was" in the user's response
+		String end= response.substring(a+3,response.length()); //Stores the end of the statemnt, that comes after "was", into a variable
+		end= end.trim(); //Takes away any spaces on the outskirts of the statement
+		if((end.substring(end.length()-1,end.length()).equals(".") || (end.substring(end.length()-1,end.length()).equals("!")))) //Takes away the period or exclamation point from the end of the statemnt, if there is one
 		{
 			end=end.substring(0,end.length()-1);
 		}
-		return "Why was it " + end + "?";
+		return "Why was it " + end + "?"; //Asks the user why they have that opinion on the story
 
 	}
 
