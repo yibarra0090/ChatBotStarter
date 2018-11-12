@@ -12,7 +12,9 @@ public class ChatBot2
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int win = 0;
-	private String [] gameWordBankCSA = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
+	private String[] gameWordBankCSA = {"Chat Bot", "AP CSA", "Mr Levin", "Constructor", "Shapes Lab", "Method Signature"};
+	private String[] gameWordBankStarWars = {"The High Ground", "Luke Skywalker", "Darth Maul", "501st Legion", "Trade Federation", "Grand Moff Tarkin"};
+	private String[] gameWordBankPresidents = {"Barack Obama", "George Washington", "Ulysses Grant", "Harry Truman", "Theodore Roosevelt", "Ronald Reagen"};
 
 
 	/**
@@ -69,93 +71,12 @@ public class ChatBot2
 		{
 			hangmanGame(gameWordBankCSA);
 		}
-
-		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
-		{
-			response = transformIWantToStatement(statement);
-		}
-		else if (findKeyword(statement, "I want",0) >= 0)
-		{
-			response = transformIWantStatement(statement);
-		}
 		else
 		{
-			response = "Ok...";
+			response = "Ok.";
 		}
 		
 		return response;
-	}
-	
-	/**
-	 * Take a statement with "I want to <something>." and transform it into 
-	 * "Why do you want to <something>?"
-	 * @param statement the user statement, assumed to contain "I want to"
-	 * @return the transformed statement
-	 */
-	private String transformIWantToStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		int psn = findKeyword (statement, "I want to", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
-	}
-
-	
-	/**
-	 * Take a statement with "I want <something>." and transform it into 
-	 * "Would you really be happy if you had <something>?"
-	 * @param statement the user statement, assumed to contain "I want"
-	 * @return the transformed statement
-	 */
-	private String transformIWantStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
-	}
-	
-	
-	/**
-	 * Take a statement with "I <something> you" and transform it into 
-	 * "Why do you <something> me?"
-	 * @param statement the user statement, assumed to contain "I" followed by "you"
-	 * @return the transformed statement
-	 */
-	private String transformIYouStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		
-		int psnOfI = findKeyword (statement, "I", 0);
-		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
-		return "Why do you " + restOfStatement + " me?";
 	}
 	
 
@@ -274,10 +195,31 @@ public class ChatBot2
 	public void hangmanGame(String[] args)
 	{
 		win = 0;
+		String pickCat = "";
+		String chosenCat = "";
+		String chosenWord = "";
+		Scanner category = new Scanner(System.in);
+		System.out.println("Choose from the following categories: CSA, Star Wars, US Presidents");
+		pickCat = category.nextLine();
+		if(pickCat.equalsIgnoreCase("US Presidents"))
+		{
+			chosenWord = gameWordBankPresidents[(int)(Math.random()*gameWordBankPresidents.length)];
+		} else
+		if(pickCat.equalsIgnoreCase("CSA"))
+		{
+			chosenWord = gameWordBankCSA[(int)(Math.random()*gameWordBankCSA.length)];
+		} else
+		if(pickCat.equalsIgnoreCase("Star Wars"))
+		{
+			chosenWord = gameWordBankStarWars[(int)(Math.random()*gameWordBankStarWars.length)];
+		} else
+		{
+			System.out.println("Sorry, that's not a valid choice. Please pick from the given.");
+			pickCat = category.nextLine();
+		}
+		String hangmanWrongStr = "";
 		System.out.println("Alright, great! Take your first guess.");
 		String[] hangmanWrongArray = {"H", "A", "N", "G", "M", "A", "N x_x"};
-		String hangmanWrongStr = "";
-		String chosenWord = gameWordBankCSA[5];
 		String[] chosenWordArray;
 		chosenWordArray = new String[chosenWord.length()];
 		for(int i = 0; i < chosenWord.length(); i++)
