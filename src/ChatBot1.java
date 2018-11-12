@@ -184,19 +184,19 @@ public class ChatBot1
 				statement= in.nextLine(); //Allows the user to respond
 			}
 
-			if (response.contains("bad") || response.contains("terrible") || response.contains("boring") || response.contains("stupid"))
+			if (response.contains("bad") || response.contains("terrible") || response.contains("boring") || response.contains("stupid")) //Looks for keywords indicating that the user did not enjoy the story, and responds based off of that
 			{
 				System.out.println("I'm sorry you didn't enjoy it. Maybe pick another story, or visit another bot.");
 			}
-			if (response.contains("weird") || response.contains("crazy") || response.contains("wild") || response.contains("wtf"))
+			if (response.contains("weird") || response.contains("crazy") || response.contains("wild") || response.contains("wtf")) //Looks for keywords indicating that the user was shocked or dumbfounded by the story, and responds based off of that
 			{
 				System.out.println("Yes, my stories can get a little crazy. HEE HEE. Check out another story or visit another bot.");
 			}
-			if (response.contains("good") || response.contains("funny") || response.contains("nice") || response.contains("cute") || response.contains("interesting") || response.contains("great"))
+			if (response.contains("good") || response.contains("funny") || response.contains("nice") || response.contains("cute") || response.contains("interesting") || response.contains("great")) //Looks for key words indicating that the user enjoyed the story, and responds based off of that
 			{
 				System.out.println("I'm glad you enjoyed it! Don't forget to check out another story or another bot!");
 			}
-			System.out.println("Welp, whether you enjoyed it or not, I hope this was a fun experince for you! " + getFarewell());
+			System.out.println("Welp, whether you enjoyed it or not, I hope this was a fun experince for you! " + getFarewell()); //Statement that the chatbot delivers at the end of everything
 
 
 
