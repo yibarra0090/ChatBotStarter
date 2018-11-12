@@ -1,3 +1,4 @@
+//Janice Lin
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,19 +10,31 @@ import java.util.Scanner;
  */
 public class ChatBot4
 {
-    //emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-    //check
+    /**
+     * correctNum and wrongNum keep track of how many questions the user gets right or wrong.
+     * This is the "emotion" part of my bot, since it keeps track of the user's score and says something different
+     * depending on the how many they answer correctly.
+     */
     int correctNum = 0;
     int wrongNum = 0;
 
+    /**
+     * These two arrays store the user's input of words and definitions and reference them when quizzing.
+     */
     String[] words = new String[20];
     String[] definitions = new String[20];
 
+    /**
+     * The boolean initialize keeps the methods in chatLoop running in the correct order.
+     * The boolean chatLoop checks if the user wants to stop the program and redirects them back to the main menu
+     * if it is false.
+     */
     boolean initialize = false;
     boolean chatLoop = true;
 
     /**
      * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
+     * Runs the methods initializeVocab(), getResponse(), and feedback().
      * @param statement the statement typed by the user
      */
     public void chatLoop(String statement)
@@ -36,6 +49,7 @@ public class ChatBot4
             System.out.println("Are you ready?");
             statement = in.nextLine();
             System.out.println(getResponse(statement));
+            feedback(statement);
         }
 
         if (statement.equals("END") || !chatLoop) {
@@ -54,7 +68,8 @@ public class ChatBot4
 
     /**
      * Gives a response to a user statement
-     *
+     * Also randomly generates a positive, neutral, or negative response depending on the number of questions
+     * the user gets right.
      * @param statement
      *            the user statement
      * @return a response based on the rules given
@@ -68,11 +83,11 @@ public class ChatBot4
             testWords(statement);
 
             if (correctNum > wrongNum) {
-                System.out.println(randomHappyResponse[(int) ((Math.random() * 2 + 1))]);
+                System.out.println(randomPositiveResponse[(int) ((Math.random() * 2 + 1))]);
             } else if (correctNum == wrongNum) {
                 System.out.println(randomNeutralResponse[(int) ((Math.random() * 2 + 1))]);
             } else if (correctNum < wrongNum) {
-                System.out.println(randomSadResponse[(int) ((Math.random() * 2 + 1))]);
+                System.out.println(randomNegativeResponse[(int) ((Math.random() * 2 + 1))]);
             }
 
             System.out.println("You got " + correctNum + "/" + (correctNum + wrongNum) + " questions right.");
@@ -87,6 +102,11 @@ public class ChatBot4
         return response;
     }
 
+    /**
+     * Initializes the vocabulary and stores the user's inputs into the arrays words and definitions.
+     * If the user types "I'm done", the method stops initializing.
+     * @param statement the user's statement
+     */
     public void initializeVocab(String statement) {
         Scanner input = new Scanner (System.in);
         statement = input.nextLine();
@@ -119,6 +139,12 @@ public class ChatBot4
             initialize = true;
     }
 
+    /**
+     * Method that tests the user on the words they inputted, returning a random correct or incorrect response depending on
+     * whether the statement matches what is stored in the array.
+     * When all of the words in the array are tested, the bot tells the user that they have completed the quiz.
+     * @param statement the user's statement
+     */
     public void testWords(String statement) {
         Scanner input = new Scanner (System.in);
         for (int i = 0; i < 21; i++) {
@@ -131,10 +157,6 @@ public class ChatBot4
                     System.out.println("You won't know if you're right unless you try.");
                 }
 
-                else if (findKeyword(statement, "What does", 0) >= 0)
-                {
-                    System.out.println(transformMeaningStatement(statement));
-                }
                 else if (statement.equalsIgnoreCase(definitions[i])) {
                     System.out.println(randomCorrectResponse[(int) ((Math.random() * 4 + 1))]);
                     correctNum++;
@@ -152,18 +174,31 @@ public class ChatBot4
         }
     }
 
+    /**
+     * Method that considers the user's thoughts. Includes a transform statement that asks why the user felt that way
+     * about the quiz.
+     * @param statement the user's statement
+     */
+    public void feedback(String statement) {
+        Scanner input = new Scanner (System.in);
+        System.out.println("What did you think of the game?");
+        statement = input.nextLine();
 
-    private String transformMeaningStatement(String statement) {
         statement = statement.trim();
-        String lastChar = statement.substring(statement.length() - 1);
-
-        if (lastChar.equals("?")) {
-            statement = statement.substring(0, statement.length() - 1);
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                    .length() - 1);
         }
 
-        int psn = findKeyword(statement, "What does", 0);
-        String restOfStatement = statement.substring(psn + 9).trim();
-        return "The definition of the word is";
+        int psn = findKeyword (statement,"The game was", 0);
+        String restOfStatement = statement.substring(psn + 12).trim();
+        System.out.println("Why did you think the game was " + restOfStatement + " ?");
+        statement = input.nextLine();
+        System.out.println("Okay, I'll keep that in mind. Thank you for playing!");
+
     }
 
     /**
@@ -243,10 +278,14 @@ public class ChatBot4
         return findKeyword (statement, goal, 0);
     }
 
+    /**
+     * Arrays that contain the possible responses the user can get from correct choices, incorrect choices, a good score,
+     * a neutral score, or a bad score.
+     */
     private String [] randomCorrectResponse = {"That's correct!", "Nice one!", "You got it right!", "Great job!", "Superb!"};
     private String [] randomWrongResponse = {"Hmm...that doesn't seem right.", "That's incorrect.", "Nope, that's not it.", "Maybe you mixed that up with another word?", "That's incorrect. Did you make a typo?"};
-    private String [] randomHappyResponse = {"Awesome!", "Congratulations!", "You're a genius!"};
+    private String [] randomPositiveResponse = {"Awesome!", "Congratulations!", "You're a genius!"};
     private String [] randomNeutralResponse = {"That was okay.", "Keep studying harder!", "Make sure to review your material."};
-    private String [] randomSadResponse = {"You can do better than that.", "You'll do better next time.", "Maybe you should reference your notes again."};
+    private String [] randomNegativeResponse = {"You can do better than that.", "You'll do better next time.", "Maybe you should reference your notes again."};
 
 }
