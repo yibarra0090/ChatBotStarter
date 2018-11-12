@@ -29,6 +29,7 @@ public class ChatBot1
 	public String city;
 	public String day;
 	public String direction;
+	public boolean chatLoop;
 
 
 
@@ -37,12 +38,12 @@ public class ChatBot1
 	 * @param statement the statement typed by the user
 	 */
 	public void chatLoop(String statement)
-	{
+	{   chatLoop=true;
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
 
-		while (!statement.equals("Bye"))
+		while ((!statement.equals("Bye")) && chatLoop)
 		{
 
 
@@ -196,7 +197,8 @@ public class ChatBot1
 			{
 				System.out.println("I'm glad you enjoyed it! Don't forget to check out another story or another bot!");
 			}
-			System.out.println("Welp, whether you enjoyed it or not, I hope this was a fun experince for you! " + getFarewell()); //Statement that the chatbot delivers at the end of everything
+			System.out.println("Welp, whether you enjoyed it or not, I hope this was a fun experince for you! " ); //Statement that the chatbot delivers at the end of everything
+			chatLoop=false;
 
 
 
@@ -236,10 +238,6 @@ public class ChatBot1
 		return "Hi, I'm LibBot. I tell you stories based on information that you give me. There are 5 types of stories. To get started, pick a number from 1-5.";
 	}
 
-	public String getFarewell() //The chatbot's last statement to the user until the user decides what they want to do next.
-	{
-		return "In order to play another story, press a number from 1-5. In order to switch to another bot, run the runner again.";
-	}
 
 	
 	/**
