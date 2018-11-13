@@ -18,6 +18,7 @@ public class ChatBotRunner
         System.out.println("Please type 2 to play Hangman");
         System.out.println("Please type 3 to speak to our Joke/RiddleBot.");
         System.out.println("Please type 4 to speak to our QuizBot.");
+        System.out.println("Say 'bye' if you no longer want to play any of the WordBots.");
 		String statement = in.nextLine();
 		while (!statement.equals("Bye"))
 		{
