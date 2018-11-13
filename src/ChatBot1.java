@@ -223,7 +223,7 @@ public class ChatBot1
 	}
 	public String madLib4(String name1, String name2, String city, String country, String food) //The base story of Mad Lib 4
 	{
-		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+", accidentally some them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
+		return name1 +" and " +name2 +" are identical twins that live in "+ city + ", " + country +". They go to the same high school, and take the same classes. One day, " + name1 + " and " + name2 +" decided to play a prank on their school and switch schedules for a day. Anyways, it's not likely anything bad would happen. SIKE! " + name1 +"'s girlfriend ended up breaking up with him that day, and " +name2 +" would have no idea how to tell his brother that his girlfriend was done with him. Yet, he'd never have to. " + name1 +", who is allergic to " +food+ ", accidentally some them as " +name2+"'s best friend decided to bake cookies with " +food+" in them. " +name1+" was unaware, and ended up dying.";
 	}
 	public String madLib5(String birthday, String adj1, String item, String profession, String verb, String name1) //The base story of Mad Lib 5
 	{
