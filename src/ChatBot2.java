@@ -5,8 +5,8 @@ import java.util.Scanner;
 /**
  * A program to carry on conversations with a human user.
  * This version:
- * @author Brooklyn Tech CS Department
- * @version September 2018
+ * @author Juliusz Ambroziak
+ * @version November 2018
  */
 public class ChatBot2
 {
